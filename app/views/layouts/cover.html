@@ -1,0 +1,97 @@
+{#
+For guidance on how to use layouts see:
+https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
+#}
+
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %} {# or extend another layout if needed #}
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-2">Product template</h1>
+
+    <body>
+        <p>Welcome to the revolutionary product designed to simplify your tasks and amplify your productivity. Our innovative solution is tailored specifically for professionals who are looking to optimize their workflow. Experience the seamless integration of technology and convenience, elevating your daily experiences.</p>
+
+    </body>
+
+    <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+
+    <!-- Section 1 - Work in Progress -->
+    <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+                <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                    Work in Progress
+                </span>
+            </h2>
+        </div>
+        <div aria-labelledby="accordion-default-heading-1" class="govuk-accordion__section-content" id="accordion-default-content-1">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+                <li><a class="govuk-link--no-visited-state" href="#link1">Lorem Ipsum Link 1</a></li>
+                <li><a class="govuk-link--no-visited-state" href="#link2">Lorem Ipsum Link 2</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Section 2 - Work Completed -->
+    <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+                <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
+                    Work Completed
+                </span>
+            </h2>
+        </div>
+        <div aria-labelledby="accordion-default-heading-2" class="govuk-accordion__section-content" id="accordion-default-content-2">
+            <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+                <li><a class="govuk-link--no-visited-state" href="#link3">Lorem Ipsum Link 3</a></li>
+                <li><a class="govuk-link--no-visited-state" href="#link4">Lorem Ipsum Link 4</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Section 3 - Application Template -->
+    <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+                <span class="govuk-accordion__section-button" id="accordion-default-heading-3">
+                    Application Template
+                </span>
+            </h2>
+        </div>
+        <div aria-labelledby="accordion-default-heading-3" class="govuk-accordion__section-content" id="accordion-default-content-3">
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+                <li><a class="govuk-link--no-visited-state" href="#link5">Lorem Ipsum Link 5</a></li>
+                <li><a class="govuk-link--no-visited-state" href="#link6">Lorem Ipsum Link 6</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Section 4 - Experimental & Playground -->
+    <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+                <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
+                    Experimental & Playground
+                </span>
+            </h2>
+        </div>
+        <div aria-labelledby="accordion-default-heading-4" class="govuk-accordion__section-content" id="accordion-default-content-4">
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+                <li><a class="govuk-link--no-visited-state" href="#link7">Lorem Ipsum Link 7</a></li>
+                <li><a class="govuk-link--no-visited-state" href="#link8">Lorem Ipsum Link 8</a></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,266 @@
+{#
+For guidance on how to use layouts see:
+https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
+#}
+
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %} {# or extend another layout if needed #}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Accordion Sidebar</title>
+  <style>
+    .item-dashed {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .toggle-content {
+      display: none;
+      list-style-type: none;
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    .toggle-content.show {
+      display: block;
+    }
+
+    .font-size-16 {
+      line-height: 1.5em;
+    }
+
+    .item-dashed a {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    <nav id="accordion-sections">
+      <p class="contents-title govuk-body font-size-16">Contents</p>
+      <ol class="contents-items font-size-16" style="list-style-type: none; padding-left: 0;">
+        <!-- Section 1: Preparing for the Day -->
+        <li class="item item-dashed">
+          &mdash; <a class="font-size-16 parent-toggle" data-toggle="preparing-for-the-day">Preparing for the Day</a>
+          <ol class="toggle-content" id="preparing-for-the-day">
+            <li><a class="font-size-16" href="#setting-up-workspace">Setting Up Workspace for processing</a></li>
+            <li><a class="font-size-16" href="#determining-daily-application-priorities">Determining Daily Application Priorities</a></li>
+          </ol>
+        </li>
+        <!-- Section 2: Selecting the Next Priority Application -->
+        <li class="item item-dashed">
+          &mdash; <a class="font-size-16 parent-toggle" data-toggle="selecting-next-priority-application">Selecting the Next Priority Application</a>
+          <ol class="toggle-content" id="selecting-next-priority-application">
+            <li><a class="font-size-16" href="#evaluating-in-progress-vs-new">Evaluating In-Progress vs. New Applications</a></li>
+            <li><a class="font-size-16" href="#opening-existing-or-new">Opening an Existing or New Application</a></li>
+          </ol>
+        </li>
+        <!-- ... (previous sections and subsections) -->
+<!-- Section 3: Reviewing and Assessing the Application -->
+<li class="item item-dashed">
+  &mdash; <a class="font-size-16 parent-toggle" data-toggle="reviewing-and-assessing-application">Reviewing and Assessing the Application</a>
+  <ol class="toggle-content" id="reviewing-and-assessing-application">
+    <li><a class="font-size-16" href="#organizing-application-documents-for-review">Organizing Application Documents for Review</a></li>
+    <li><a class="font-size-16" href="#determining-application-requirements-and-transactions">Determining Application Requirements and Transactions</a></li>
+  </ol>
+</li>
+
+<!-- Section 4: Conducting Job Search -->
+<li class="item item-dashed">
+  &mdash; <a class="font-size-16 parent-toggle" data-toggle="conducting-job-search">Conducting Job Search</a>
+  <ol class="toggle-content" id="conducting-job-search">
+    <li><a class="font-size-16" href="#assessing-impact-of-title-history-priority-searches-or-stops">Assessing Impact of Title History, Priority Searches, or Stops</a></li>
+    <li><a class="font-size-16" href="#sub-tasks-for-search-only-cases">Sub-Tasks for Search-Only Cases</a></li>
+  </ol>
+</li>
+
+<!-- Section 5: Defining the Searches Task -->
+<li class="item item-dashed">
+  &mdash; <a class="font-size-16 parent-toggle" data-toggle="defining-the-searches-task">Defining the Searches Task</a>
+  <ol class="toggle-content" id="defining-the-searches-task">
+    <li><a class="font-size-16" href="#reviewing-previous-progress-on-searches">Reviewing Previous Progress on Searches</a></li>
+    <li><a class="font-size-16" href="#adapting-search-tasks-based-on-previous-work">Adapting Search Tasks Based on Previous Work</a></li>
+    <li><a class="font-size-16" href="#identifying-affected-applicants">Identifying Affected Applicants</a></li>
+    <li><a class="font-size-16" href="#retrieving-search-information-by-title-number">Retrieving Search Information by Title Number</a></li>
+  </ol>
+</li>
+<!-- Section 6: Gathering Searches Information -->
+<li class="item item-dashed">
+  &mdash; <a class="font-size-16 parent-toggle" data-toggle="gathering-searches-information">Gathering Searches Information</a>
+  <ol class="toggle-content" id="gathering-searches-information">
+    <li><a class="font-size-16" href="#determining-the-number-of-searches-at-the-time-of-application">Determining the Number of Searches at the Time of Application</a></li>
+    <li><a class="font-size-16" href="#assessing-time-periods-covered-by-searches">Assessing Time Periods Covered by Searches</a></li>
+    <li><a class="font-size-16" href="#matching-names-against-searches">Matching Names Against Searches</a></li>
+    <li><a class="font-size-16" href="#impact-of-other-applications-on-search-tasks">Impact of Other Applications on Search Tasks</a></li>
+  </ol>
+</li>
+
+<!-- Section 7: Assessing the Searches Information -->
+<li class="item item-dashed">
+  &mdash; <a class="font-size-16 parent-toggle" data-toggle="assessing-the-searches-information">Assessing the Searches Information</a>
+  <ol class="toggle-content" id="assessing-the-searches-information">
+    <li><a class="font-size-16" href="#matching-applicant-names-to-searches">Matching Applicant Names to Searches</a></li>
+    <li><a class="font-size-16" href="#prioritizing-searches-by-time-period">Prioritizing Searches by Time Period</a></li>
+  </ol>
+</li>
+
+<!-- Section 8: Evaluating Search Protection -->
+<li class="item item-dashed">
+  &mdash; <a class="font-size-16 parent-toggle" data-toggle="evaluating-search-protection">Evaluating Search Protection</a>
+  <ol class="toggle-content" id="evaluating-search-protection">
+    <li><a class="font-size-16" href="#dismissing-searches-matching-applicant-names">Dismissing Searches Matching Applicant Names</a></li>
+    <li><a class="font-size-16" href="#assessing-search-related-protection">Assessing Search-Related Protection</a></li>
+  </ol>
+</li>
+<!-- Section 9: Deciding and Confirming Actions Required -->
+<li class="item item-dashed">
+  &mdash; <a class="font-size-16 parent-toggle" data-toggle="deciding-confirming-actions">Deciding and Confirming Actions Required</a>
+  <ol class="toggle-content" id="deciding-confirming-actions">
+    <li><a class="font-size-16" href="#confirming-irrelevance-or-expiry-of-searches">Confirming Irrelevance or Expiry of Searches</a></li>
+    <li><a class="font-size-16" href="#confirming-valid-search-protections">Confirming Valid Search Protections</a></li>
+    <li><a class="font-size-16" href="#referring-to-senior-officers-for-further-consideration">Referring to Senior Officers for Further Consideration</a></li>
+  </ol>
+</li>
+
+<!-- Section 10: Verifying Applicant Credentials -->
+<li class="item item-dashed">
+  &mdash; <a class="font-size-16 parent-toggle" data-toggle="verifying-credentials">Verifying Applicant Credentials</a>
+  <ol class="toggle-content" id="verifying-credentials">
+    <li><a class="font-size-16" href="#confirming-legal-representation-for-all-parties">Confirming Legal Representation for All Parties</a></li>
+  </ol>
+</li>
+
+<!-- Section 11: Managing Fees and Payments -->
+<li class="item item-dashed">
+  &mdash; <a class="font-size-16 parent-toggle" data-toggle="managing-fees">Managing Fees and Payments</a>
+  <ol class="toggle-content" id="managing-fees">
+    <li><a class="font-size-16" href="#calculating-and-confirming-due-fees">Calculating and Confirming Due Fees</a></li>
+  </ol>
+</li>
+
+<!-- Section 12: Coordinating with Prior or Subsequent Applications -->
+<li class="item item-dashed">
+  &mdash; <a class="font-size-16 parent-toggle" data-toggle="coordinating-applications">Coordinating with Prior or Subsequent Applications</a>
+  <ol class="toggle-content" id="coordinating-applications">
+    <li><a class="font-size-16" href="#identifying-necessary-additional-applications">Identifying Necessary Additional Applications</a></li>
+  </ol>
+</li>
+<!-- Section 13: Assessing Transactions -->
+<li class="item item-dashed">
+  &mdash; <a class="font-size-16 parent-toggle" data-toggle="assessing-transactions">Assessing Transactions</a>
+  <ol class="toggle-content" id="assessing-transactions">
+    <li><a class="font-size-16" href="#verifying-transaction-alignment-with-registers">Verifying Transaction Alignment with Registers</a></li>
+    <li><a class="font-size-16" href="#compliance-check-for-hmlr-requirements">Compliance Check for HMLR Requirements</a></li>
+  </ol>
+</li>
+
+<!-- Section 14: Preparing for Register Updates -->
+<li class="item item-dashed">
+  &mdash; <a class="font-size-16 parent-toggle" data-toggle="preparing-updates">Preparing for Register Updates</a>
+  <ol class="toggle-content" id="preparing-updates">
+    <li><a class="font-size-16" href="#understanding-hmlr-transaction-requirements">Understanding HMLR Transaction Requirements</a></li>
+    <li><a class="font-size-16" href="#consulting-practice-guidance">Consulting Practice Guidance</a></li>
+  </ol>
+</li>
+
+<!-- Section 15: Drafting Register Updates -->
+<li class="item item-dashed">
+  &mdash; <a class="font-size-16 parent-toggle" data-toggle="drafting-updates">Drafting Register Updates</a>
+  <ol class="toggle-content" id="drafting-updates">
+    <li><a class="font-size-16" href="#verifying-information-accuracy">Verifying Information Accuracy</a></li>
+    <li><a class="font-size-16" href="#removing-obsolete-register-entries">Removing Obsolete Register Entries</a></li>
+    <li><a class="font-size-16" href="#drafting-new-register-entries">Drafting New Register Entries</a></li>
+  </ol>
+</li>
+
+<!-- Section 16: Issuing Notices -->
+<li class="item item-dashed">
+  &mdash; <a class="font-size-16 parent-toggle" data-toggle="issuing-notices">Issuing Notices</a>
+  <ol class="toggle-content" id="issuing-notices">
+    <li><a class="font-size-16" href="#identifying-required-pre-and-post-completion-notices">Identifying Required Pre and Post-Completion Notices</a></li>
+    <li><a class="font-size-16" href="#preparing-and-issuing-notices">Preparing and Issuing Notices</a></li>
+  </ol>
+</li>
+<!-- Section 17: Recording Application Defects -->
+<li class="item item-dashed">
+  &mdash; <a class="font-size-16 parent-toggle" data-toggle="recording-defects">Recording Application Defects</a>
+  <ol class="toggle-content" id="recording-defects">
+    <li><a class="font-size-16" href="#identifying-and-recording-defects">Identifying and Recording Defects</a></li>
+  </ol>
+</li>
+
+<!-- Section 18: Resolving Application Issues -->
+<li class="item item-dashed">
+  &mdash; <a class="font-size-16 parent-toggle" data-toggle="resolving-issues">Resolving Application Issues</a>
+  <ol class="toggle-content" id="resolving-issues">
+    <li><a class="font-size-16" href="#contacting-customers-for-missing-info">Contacting Customers for Missing Info</a></li>
+    <li><a class="font-size-16" href="#drafting-handover-notes-for-next-caseworker">Drafting Handover Notes for Next Caseworker</a></li>
+    <li><a class="font-size-16" href="#preparing-requisition-letters">Preparing Requisition Letters</a></li>
+  </ol>
+</li>
+
+<!-- Section 19: Submitting Requisition -->
+<li class="item item-dashed">
+  &mdash; <a class="font-size-16 parent-toggle" data-toggle="submitting-requisition">Submitting Requisition</a>
+  <ol class="toggle-content" id="submitting-requisition">
+    <li><a class="font-size-16" href="#final-checks-and-requisition-submission">Final Checks and Requisition Submission</a></li>
+  </ol>
+</li>
+
+<!-- Section 20: Finalizing the Application -->
+<li class="item item-dashed">
+  &mdash; <a class="font-size-16 parent-toggle" data-toggle="finalizing-application">Finalizing the Application</a>
+  <ol class="toggle-content" id="finalizing-application">
+    <li><a class="font-size-16" href="#final-verification-and-completion">Final Verification and Completion</a></li>
+    <li><a class="font-size-16" href="#storing-key-decisions-for-post-completion">Storing Key Decisions for Post-Completion</a></li>
+  </ol>
+</li>
+
+<!-- Section 21: Storing Application Documents -->
+<li class="item item-dashed">
+  &mdash; <a class="font-size-16 parent-toggle" data-toggle="storing-documents">Storing Application Documents</a>
+  <ol class="toggle-content" id="storing-documents">
+    <li><a class="font-size-16" href="#storing-documents-according-to-lr-policy">Storing Documents According to LR Policy</a></li>
+  </ol>
+</li>
+
+      </ol>
+    </nav>
+  </div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const parentToggles = document.querySelectorAll('.parent-toggle');
+    parentToggles.forEach(toggle => {
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        const sectionId = this.getAttribute('data-toggle');
+        const content = document.getElementById(sectionId);
+        if (content) {
+          content.classList.toggle('show');
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+{# <div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Product template</h1>
+
+</div> #}
+
+
+
+    </div>
+  </div>
+{% endblock %}
