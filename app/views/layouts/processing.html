@@ -1,0 +1,252 @@
+{#
+For guidance on how to use layouts see:
+https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
+#}
+
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %} {# or extend another layout if needed #}
+{% block content %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    let links = document.querySelectorAll('.app-navigation__link');
+    links.forEach(link => {
+      if (window.location.href.includes(link.getAttribute('href'))) {
+        link.parentNode.classList.add('app-navigation__list-item--current');
+      }
+    });
+    });
+   document.addEventListener("DOMContentLoaded", function() {
+      const parentToggles = document.querySelectorAll('.parent-toggle');
+      parentToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          const sectionId = this.getAttribute('data-toggle');
+          const content = document.getElementById(sectionId);
+          if (content) {
+            content.classList.toggle('show');
+          }
+
+          // Find the parent li of the clicked toggle and toggle the class on it
+          const parentLi = toggle.closest('.item');
+          if (parentLi) {
+            parentLi.classList.toggle('app-subnav__section-item--current');
+          }
+        });
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelector('.app-back-to-top__link').addEventListener('click', function (e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+</script>
+<style>
+
+ body, h1, h2, h3, h4, h5, h6, p, a {
+    font-family: 'Arial', sans-serif !important;
+  }
+
+
+  .grid-container-assets {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+  }
+
+  .grid-item {
+    padding: 10px;
+  }
+
+
+  ol {
+      list-style-type: none;
+  }
+  li {
+      list-style-type: none;
+  }
+    .govuk-main-wrapper {
+    padding-top: 0px;
+    padding-bottom: 60px;
+  }
+  .govuk-grid-row {
+    padding-top: 60px;
+    padding-bottom: 0px;
+  }
+
+  .govuk-header__container {
+          position: relative;
+          margin-bottom: -10px;
+          padding-top: 10px;
+          border-bottom: 10px solid #87C426;
+        }
+        .app-navigation__list {
+            line-height: 1.5;
+            box-sizing: border-box;
+            height: 1.125rem;
+            padding: 0 15px;
+            float: left;
+        }
+
+        .app-navigation__list-item {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .app-navigation__link {
+            padding-left: 20px;
+            padding-right: 20px;
+            font-weight: 700;
+            font-size: 19px;
+        }
+
+         .app-navigation__list-item--current {
+          border-bottom: 4px solid #00703C;
+        }
+        .govuk-link--no-visited-state:visited {
+          color: #00703C;
+        }
+        .govuk-link:link {
+            color: #fff;
+        }
+        .govuk-nav-link:link {
+            color: #00703C;
+        }
+        .govuk-link--no-visited-state:hover {
+            color: #00703C;
+        }
+        .app-navigation__link:hover {
+            color: #00703C;
+        }
+        .app-navigation {
+          color: #00703C;
+          border-bottom: 1px solid #b1b4b6;
+          box-sizing: border-box;
+          padding: 6px;
+        }
+
+</style>
+<main class="govuk-main-wrapper">
+          <div class="govuk-width-container">
+              <div class="custom-nav-container">
+          <nav id="app-navigation" class="app-navigation js-app-navigation govuk-clearfix" role="navigation" aria-labelledby="app-navigation-heading">
+              <h2 class="govuk-visually-hidden" id="app-navigation-heading">Menu</h2>
+              <ul class="app-navigation__list app-width-container">
+                  <li class="app-navigation__list-item">
+                      <a class="govuk-nav-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/index">
+                          Home
+                      </a>
+                  </li>
+                  <li class="app-navigation__list-item">
+                      <a class="govuk-nav-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/layouts/workflow">
+                          Workflow
+                      </a>
+                  </li>
+                  <li class="app-navigation__list-item">
+                      <a class="govuk-nav-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/layouts/application-processing">
+                          Application Processing
+                      </a>
+                  </li>
+                  <li class="app-navigation__list-item">
+                      <a class="govuk-nav-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/layouts/notices">
+                          Notices
+                      </a>
+                  </li>
+                  <li class="app-navigation__list-item">
+                      <a class="govuk-nav-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/layouts/research">
+                          Research
+                      </a>
+                  </li>
+              </ul>
+          </nav>
+      </div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-2">Product template</h1>
+
+    <body>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+
+    </body>
+
+    <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+
+    <!-- Section 1 - Work in Progress -->
+    <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+                <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                    Work in Progress
+                </span>
+            </h2>
+        </div>
+        <div aria-labelledby="accordion-default-heading-1" class="govuk-accordion__section-content" id="accordion-default-content-1">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+                <li><a class="govuk-link--no-visited-state" href="#link1">Lorem Ipsum Link 1</a></li>
+                <li><a class="govuk-link--no-visited-state" href="#link2">Lorem Ipsum Link 2</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Section 2 - Work Completed -->
+    <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+                <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
+                    Work Completed
+                </span>
+            </h2>
+        </div>
+        <div aria-labelledby="accordion-default-heading-2" class="govuk-accordion__section-content" id="accordion-default-content-2">
+            <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+                <li><a class="govuk-link--no-visited-state" href="#link3">Lorem Ipsum Link 3</a></li>
+                <li><a class="govuk-link--no-visited-state" href="#link4">Lorem Ipsum Link 4</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Section 3 - Application Template -->
+    <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+                <span class="govuk-accordion__section-button" id="accordion-default-heading-3">
+                    Application Template
+                </span>
+            </h2>
+        </div>
+        <div aria-labelledby="accordion-default-heading-3" class="govuk-accordion__section-content" id="accordion-default-content-3">
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+                <li><a class="govuk-link--no-visited-state" href="#link5">Lorem Ipsum Link 5</a></li>
+                <li><a class="govuk-link--no-visited-state" href="#link6">Lorem Ipsum Link 6</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Section 4 - Experimental & Playground -->
+    <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+                <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
+                    Experimental & Playground
+                </span>
+            </h2>
+        </div>
+        <div aria-labelledby="accordion-default-heading-4" class="govuk-accordion__section-content" id="accordion-default-content-4">
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+                <li><a class="govuk-link--no-visited-state" href="#link7">Lorem Ipsum Link 7</a></li>
+                <li><a class="govuk-link--no-visited-state" href="#link8">Lorem Ipsum Link 8</a></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+
+
+    </div>
+  </div>
+{% endblock %}

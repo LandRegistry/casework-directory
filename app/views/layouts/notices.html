@@ -1,0 +1,542 @@
+{#
+For guidance on how to use layouts see:
+https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
+#}
+
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %} {# or extend another layout if needed #}
+{% block content %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    let links = document.querySelectorAll('.app-navigation__link');
+    links.forEach(link => {
+      if (window.location.href.includes(link.getAttribute('href'))) {
+        link.parentNode.classList.add('app-navigation__list-item--current');
+      }
+    });
+    });
+   document.addEventListener("DOMContentLoaded", function() {
+      const parentToggles = document.querySelectorAll('.parent-toggle');
+      parentToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          const sectionId = this.getAttribute('data-toggle');
+          const content = document.getElementById(sectionId);
+          if (content) {
+            content.classList.toggle('show');
+          }
+
+          // Find the parent li of the clicked toggle and toggle the class on it
+          const parentLi = toggle.closest('.item');
+          if (parentLi) {
+            parentLi.classList.toggle('app-subnav__section-item--current');
+          }
+        });
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelector('.app-back-to-top__link').addEventListener('click', function (e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+</script>
+<style>
+
+ body, h1, h2, h3, h4, h5, h6, p, a {
+    font-family: 'Arial', sans-serif !important;
+  }
+
+
+  .grid-container-assets {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+  }
+
+  .grid-item {
+    padding: 10px;
+  }
+
+
+  ol {
+      list-style-type: none;
+  }
+  li {
+      list-style-type: none;
+  }
+    .govuk-main-wrapper {
+    padding-top: 0px;
+    padding-bottom: 60px;
+  }
+  .govuk-grid-row {
+    padding-top: 60px;
+    padding-bottom: 0px;
+  }
+
+  .govuk-header__container {
+          position: relative;
+          margin-bottom: -10px;
+          padding-top: 10px;
+          border-bottom: 10px solid #87C426;
+        }
+        .app-navigation__list {
+            line-height: 1.5;
+            box-sizing: border-box;
+            height: 1.125rem;
+            padding: 0 15px;
+            float: left;
+        }
+
+        .app-navigation__list-item {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .app-navigation__link {
+            padding-left: 20px;
+            padding-right: 20px;
+            font-weight: 700;
+            font-size: 19px;
+        }
+
+         .app-navigation__list-item--current {
+          border-bottom: 4px solid #00703C;
+        }
+        .govuk-link--no-visited-state:visited {
+          color: #00703C;
+        }
+        .govuk-link:link {
+            color: #fff;
+        }
+        .govuk-nav-link:link {
+            color: #00703C;
+        }
+        .govuk-link--no-visited-state:hover {
+            color: #00703C;
+        }
+        .app-navigation__link:hover {
+            color: #00703C;
+        }
+        .app-navigation {
+          color: #00703C;
+          border-bottom: 1px solid #b1b4b6;
+          box-sizing: border-box;
+          padding: 6px;
+        }
+
+</style>
+<div class="custom-nav-container">
+          <nav id="app-navigation" class="app-navigation js-app-navigation govuk-clearfix" role="navigation" aria-labelledby="app-navigation-heading">
+              <h2 class="govuk-visually-hidden" id="app-navigation-heading">Menu</h2>
+              <ul class="app-navigation__list app-width-container">
+                  <li class="app-navigation__list-item">
+                      <a class="govuk-nav-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/index">
+                          Home
+                      </a>
+                  </li>
+                  <li class="app-navigation__list-item">
+                      <a class="govuk-nav-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/layouts/workflow">
+                          Workflow
+                      </a>
+                  </li>
+                  <li class="app-navigation__list-item">
+                      <a class="govuk-nav-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/layouts/processing">
+                          Application Processing
+                      </a>
+                  </li>
+                  <li class="app-navigation__list-item">
+                      <a class="govuk-nav-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/layouts/notices">
+                          Notices
+                      </a>
+                  </li>
+                  <li class="app-navigation__list-item">
+                      <a class="govuk-nav-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/layouts/research">
+                          Research
+                      </a>
+                  </li>
+              </ul>
+          </nav>
+      </div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-2">Notices prototypes</h1>
+
+<p style="color:	#505a5f;">Future enhancement work <a href="/enhancement/">list of items</a></p>
+
+    <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+
+      <!-- end to end -->
+
+      <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+          <h2 class="govuk-accordion__section-heading"><span class="govuk-accordion__section-button"
+              id="accordion-default-heading-1">End to end prototypes</span></h2>
+        </div>
+        <div aria-labelledby="accordion-default-heading-1" class="govuk-accordion__section-content"
+          id="accordion-default-content-1">
+
+
+          <p> Registered, Chargee and other proprietors</p>
+          <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+            <li>
+              <a class="govuk-link--no-visited-state" href="/prod-new/recipient/end-to-end/search">B7: End-to-end
+              </a>
+            </li>
+            <li style="list-style: none;">What's new: Index is select, Two third pages, View full notice & Aside</li>
+            <li>
+              <a class="govuk-link--no-visited-state" href="/prod-new/recipient/">Confirm recipient names and addresses
+              </a>
+            </li>
+          </ul>
+          <p>Future testing in progress</p>
+          <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+            <li>
+              <a class="govuk-link--no-visited-state" href="/prod-new/single/">Single file upload (Poss B13)</a>
+
+            </li>
+
+          </ul>
+
+
+          <p>Current and being tested </p>
+          <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+            <li>
+              <a class="govuk-link--no-visited-state" href="/prod-new/B6-b/">B6 (Power of Sale - Second chargee)
+                end-to-end: <b>Upload top</b></a>
+
+            </li>
+            <li class="govuk-!-margin-bottom-5">
+              <a class="govuk-link--no-visited-state" href="/prod-new/B6/">B6 (Power of Sale - Second chargee)
+                end-to-end: <b>Upload bottom</b></a>
+
+            </li>
+            <li>
+              <a class="govuk-link--no-visited-state" href="/prod-new/B13/">B13 (Notice of easements or other rights)
+                end-to-end (Version 2.0)</a>
+            </li>
+          </ul>
+
+          <p>Not tested</p>
+          <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+            <li>
+              <a class="govuk-link--no-visited-state" href="/prod-new/B6/multinottested">Upload files: Warning content
+              </a>
+            </li>
+            <li>
+              <a class="govuk-link--no-visited-state"
+                href="/prod-new/B6-b/check-correspondence-uploaded-nottested">Check correspondence: List style</a>
+            </li>
+          </ul>
+
+          <p>Previously tested</p>
+          <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+            <li>
+              <a class="govuk-link--no-visited-state" href="/prod-new/B13-tested/">B13 (Notice of easements or other
+                rights) end-to-end (Version 1.0)</a>
+            </li>
+            <li>
+              <a class="govuk-link--no-visited-state" href="/prod-new/prototype-template">B5 Notice end-to-end with
+                back navigation and check your answers</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+
+      <!-- Deviation -->
+
+      <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+          <h2 class="govuk-accordion__section-heading"> <span class="govuk-accordion__section-button"
+              id="accordion-default-heading-2">Deviation</span></h2>
+        </div>
+
+
+        <div class="govuk-accordion__section-content">
+
+
+          <!-- Registered application -->
+
+          <div class="govuk-accordion__section">
+            <div class="govuk-accordion__section-header">
+              <h2 class="govuk-accordion__section-heading"><span class="govuk-accordion__section-button"
+                  id="accordion-default-heading-3" style="font-size: 19px;">Registered application</span></h2>
+            </div>
+                </span><div aria-labelledby="accordion-default-heading-3" class="govuk-accordion__section-content"
+              id="accordion-default-content-3">
+               <p> <b>UCD link:</b> <a class="govuk-link--no-visited-state" href="prod-new/B13-tested/property_details">
+                  How are the application and property registered?</a><br> <b>Diverted link:</b> <a
+                    class="govuk-link--no-visited-state" href="prod-new/B13/property_details">How are the
+                    application and property registered?</a> </p>
+                <p style="margin-bottom: 10px;"><b>User research</b></p>
+                <ul class="govuk-list">
+                  <li><a class="govuk-link--no-visited-state"
+                      href="https://landregistryuk-my.sharepoint.com/:p:/g/personal/james_vasey_landregistry_gov_uk/EZzVU0AVIsNEs8uGv0ihsPEBreFb6OkC6H_qRciwZhJTzw?e=7W10ib">P422
+                      - Notice service: B13 Round 1 </a></li>
+                  <li> <a class="govuk-link--no-visited-state"
+                      href="https://landregistryuk-my.sharepoint.com/:p:/g/personal/james_vasey_landregistry_gov_uk/Edf0JFX3hVxKsM4LYnXHOpcBAHOlkYP5QkBD75-b27DgCw?e=rMJSDe">P422
+                      - Notice service: B13 Round 2 </a></li>
+                  <li> <a class="govuk-link--no-visited-state"
+                      href="https://landregistryuk-my.sharepoint.com/:p:/g/personal/james_vasey_landregistry_gov_uk/ERn7VkPvs3tNrVdzh1dLgEMBf4BPK99yn5vyUNQS3XOK4Q?e=5Q0wuj">P422
+                      - Notice service: B13 Round 3 </a></li>
+                </ul>
+                <table class="govuk-table">
+                  <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                      <th class="govuk-table__header" scope="col"> Stages </th>
+                      <th class="govuk-table__header" scope="col"> Status </th>
+                    </tr>
+                  </thead>
+                  <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell">
+                        User research
+                      </td>
+                      <td class="govuk-table__cell">
+                        <strong class="govuk-tag">
+                          Tested
+                        </strong>
+                      </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell">
+                        Deilvery
+                      </td>
+                      <td class="govuk-table__cell">
+                        <strong class="govuk-tag govuk-tag--red">
+                          Diverted
+                        </strong>
+                      </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell">
+                        Contrains
+                      </td>
+                      <td class="govuk-table__cell">
+                        <strong class="govuk-tag govuk-tag--red">
+                          Timescale
+                        </strong>
+
+
+                      </td>
+                    </tr>
+
+
+                  </tbody>
+
+                </table>
+                <h2 class="govuk-heading-s">Background</h2>
+                <p class="govuk-body-s"> The prototype was usability tested to ensure it could be used to send the B13 out and then a further
+                  round to improve the user experience. On the application details page, after a radio button was
+                  selected, the caseworker was required to input information. On the initial prototype, this was
+                  revealed on the same page, below the radio button when it was selected. After feedback, and to improve
+                  accessibility, in the next round this information was displayed on separate pages. </p><p class="govuk-body-s">This design also
+                  used revised content for the radio buttons. Caseworkers found it easier to navigate and when the
+                  information was displayed across several pages and their interpretation of the radio button content
+                  was more consistent. However, due to technical constraints of having questions with a parent-child
+                  relationship across multiple pages, the original design, and content, were chosen.
+                </p>
+
+              </div>
+            </div>
+
+          <!-- Multi upload -->
+          <div class="govuk-accordion__section">
+            <div class="govuk-accordion__section-header">
+              <h2 class="govuk-accordion__section-heading"><span class="govuk-accordion__section-button"
+                  id="accordion-default-heading-4" style="font-size: 19px;"> Multi upload
+                </span></h2>
+            </div>
+                </span>
+              <div aria-labelledby="accordion-default-heading-4" class="govuk-accordion__section-content"
+                id="accordion-default-content-4">
+
+                <p>
+                  <b>UCD link:</b> <a class="govuk-link--no-visited-state" href="prod-new/B6-b/multi">Upload files</a><br>
+                  <b>Diverted link: </b><a class="govuk-link--no-visited-state" href="prod-new/single/upload">Upload files</a>
+                </p>
+                <p style="margin-bottom: 10px;"><b>User research</b></p>
+                <ul class="govuk-list">
+                  <li><a class="govuk-link--no-visited-state" href="https://landregistryuk-my.sharepoint.com/:p:/g/personal/james_vasey_landregistry_gov_uk/EWo8tu31ID1Hk7nBmxpG8E8Bw5gne77zw7yFD_dvn4oYLg?e=SdOoyT
+                    ">Attachment round 2 </a></li>
+                  <li> <a class="govuk-link--no-visited-state" href="https://landregistryuk-my.sharepoint.com/:p:/g/personal/james_vasey_landregistry_gov_uk/Ee2JVMcQJiREvIJ9FNdUpHMBH7726tQcHqsooPjPjAc4Dg?e=M2KpXM
+                    ">Attachment upload journey </a></li>
+
+
+
+                </ul>
+
+
+                <table class="govuk-table">
+                  <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                      <th class="govuk-table__header" scope="col"> Stages </th>
+                      <th class="govuk-table__header" scope="col"> Status </th>
+                    </tr>
+                  </thead>
+                  <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell">
+                        User research
+                      </td>
+                      <td class="govuk-table__cell">
+                        <strong class="govuk-tag">
+                          Tested
+                        </strong>
+                      </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell">
+                        Deilvery
+                      </td>
+                      <td class="govuk-table__cell">
+                        <strong class="govuk-tag govuk-tag--red">
+                          Diverted
+                        </strong>
+                      </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell">
+                        Contrains
+                      </td>
+                      <td class="govuk-table__cell">
+                        <strong class="govuk-tag govuk-tag--red">
+                          Timescale
+                        </strong>
+
+
+                      </td>
+                    </tr>
+
+
+                  </tbody>
+
+                </table>
+                <h2 class="govuk-heading-s">Background</h2>
+                <p class="govuk-body-s">
+                  The multi-upload file component was tested with the display showing a box into which an attachment
+                  could be added by drag and drop or a select files button. Above the box was a table showing what had
+                  been uploaded. Although the functionality of this page tested well there were constraints with
+                  timescales making it difficult to technically implement the multi-upload component or show the error
+                  messages on the page. </p><p class="govuk-body-s">With a new single-upload file component being used instead, the caseworker will
+                  select a file to upload then once confirmed they are taken to a separate page with the table showing
+                  which file has been uploaded. This process will need to be repeated for each additional file to be
+                  added. Time constraints also meant that this design was deployed in the notice service without user
+                  testing.
+
+                </p>
+
+
+              </div>
+            </div>
+          </div>
+
+
+         </div>
+
+
+
+
+
+
+      <!-- ticket / features -->
+
+
+      <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+          <h2 class="govuk-accordion__section-heading"><span class="govuk-accordion__section-button"
+              id="accordion-default-heading-5">Prototypes by ticket number / feature</span></h2>
+        </div>
+        <div aria-labelledby="accordion-default-heading-5" class="govuk-accordion__section-content"
+          id="accordion-default-content-5">
+          <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+            <li>
+              <a class="govuk-link" href="/prod-new/delete/index">B5 Delete notice</a>
+            </li>
+            <li>
+              <a class="govuk-link" href="/tickets/P422-590/index">P422-590 - B13 (Notice of easements or other
+                rights)</a>
+            </li>
+            <li>
+              <a class="govuk-link" href="archive-failure/prototype-archive-failure">P422-677 - Notice check
+                correspondence and Archive Failure</a>
+            </li>
+            <li>
+              <a class="govuk-link--no-visited-state govuk-!-margin-bottom-6" href="/tickets/P422-476/index">P422-476:
+                Design UI changes for correspondence record locking</a>
+            </li>
+            <li style="list-style: none"><br></li>
+            <li>P422-618: Opt out of Xerox and error messaging</li>
+            <li style="list-style: none; display: inline">
+              <ul class="govuk-list govuk-list--bullet">
+                <li>
+                  <a class="govuk-link" href="/tickets/P422-618/check-correspondence?journey=success">Success</a>
+                </li>
+                <li>
+                  <a class="govuk-link" href="/tickets/P422-618/check-correspondence?journey=partial">Partial
+                    success</a>
+                </li>
+                <li>
+                  <a class="govuk-link" href="/tickets/P422-618/check-correspondence?journey=failure">Failure</a>
+                </li>
+                <li>
+                  <a class="govuk-link" href="/tickets/P422-618/check-correspondence?journey=manual">Manual
+                    despatch</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a class="govuk-link--no-visited-state govuk-!-margin-bottom-6"
+                href="/tickets/p422-392-and-p422-393/check-correspondence">P422-392 and P422-393: Save, draft, and
+                delete functionality</a>
+            </li>
+            <li style="list-style: none"><br></li>
+            <li>P422-16: Service Access - Provide direct access to the service</li>
+            <li style="list-style: none; display: inline">
+              <ul class="govuk-list govuk-list--bullet">
+                <li>
+                  <a class="govuk-link" href="tickets/p422-16/index">Via Windows start menu (direct access)</a>
+                </li>
+                <li>
+                  <a class="govuk-link" href="tickets/p422-16/service-entry-link">Via external link (prefill)</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a class="govuk-link--no-visited-state" href="/tickets/cor-48/index">COR-48: Add New Recipient(s)</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- feature prototypes -->
+
+
+      <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+          <h2 class="govuk-accordion__section-heading"><span class="govuk-accordion__section-button"
+              id="accordion-default-heading-6">Feature prototypes</span></h2>
+        </div>
+        <div aria-labelledby="accordion-default-heading-6" class="govuk-accordion__section-content"
+          id="accordion-default-content-6">
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              <a class="govuk-link--no-visited-state" href="/edit-name-address/version-history">Edit names and
+                addresses</a>
+            </li>
+            <li>
+              <a class="govuk-link--no-visited-state" href="/details/check-pre-fills">Check application details</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </div>
+{% endblock %}
