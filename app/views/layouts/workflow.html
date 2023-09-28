@@ -42,58 +42,62 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
     });
 </script>
 <style>
-
- body, h1, h2, h3, h4, h5, h6, p, a {
+body, h1, h2, h3, h4, h5, h6, p, a {
     font-family: 'Arial', sans-serif !important;
-  }
+}
 
-     .app-navigation {
+.app-navigation {
     display: flex;
     align-items: center;
+    color: #00703C;
+    border-bottom: 1px solid #b1b4b6;
+    box-sizing: border-box;
+    padding: 6px;
 }
 
 .app-navigation__list {
     display: flex;
     align-items: center;
     width: 100%;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    line-height: 1.5;
+    box-sizing: border-box;
+    height: 1.125rem;
+    float: left;
 }
 
- .app-navigation-grid {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+.app-navigation-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-    .app-navigation__list {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 0;
-        margin: 0;
-        list-style: none;
-    }
-
-    .app-navigation__search {
-        display: flex;
-        align-items: center;
-    }
+.app-navigation__search {
+    display: flex;
+    align-items: center;
+}
 
 .search-container {
     display: flex;
-    margin-left: auto; /* this should push the search container to the right */
+    margin-left: auto;
+    float: right;
+    padding: 10px;
 }
 
 .search-box {
     box-sizing: border-box;
-    width: 100%; /* this will make the search box take the full width of its container */
+    width: 100%;
     height: 2.5rem;
     margin-bottom: 0;
     padding: 5px;
-    padding-left: 35px; /* adjusted for the background image */
+    padding-left: 35px;
     border: 2px solid #fff;
     border-radius: 0;
     -webkit-appearance: none;
-    appearance: none; /* For other browsers */
+    appearance: none;
     position: relative;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36' width='40' height='40'%3E%3Cpath d='M25.7 24.8L21.9 21c.7-1 1.1-2.2 1.1-3.5 0-3.6-2.9-6.5-6.5-6.5S10 13.9 10 17.5s2.9 6.5 6.5 6.5c1.6 0 3-.6 4.1-1.5l3.7 3.7 1.4-1.4zM12 17.5c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5-2 4.5-4.5 4.5-4.5-2-4.5-4.5z' fill='%23505a5f'%3E%3C/path%3E%3C/svg%3E");
     background-repeat: no-repeat;
@@ -101,217 +105,77 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
     background-size: 40px 40px;
 }
 
-
-
-    .app-navigation__list {
-        line-height: 1.5;
-        box-sizing: border-box;
-        height: 1.125rem;
-        padding: 0 15px;
-        float: left;
-    }
-
-    .app-navigation__list-item {
-        display: inline-block;
-        margin-right: 16px;
-    }
-    app-navigation__search .search-container {
-    margin-left: 30px;
-
+.app-navigation__list-item {
+    display: inline-block;
+    margin-right: 16px;
 }
-    a.app-navigation__link[href="/layouts/application-processing"] {
+
+app-navigation__search .search-container {
+    margin-left: 30px;
+}
+
+a.app-navigation__link[href="/layouts/application-processing"] {
     width: 200px;
 }
 
-    .app-navigation__link {
-        padding-left: 10px;
-        padding-right: 10px;
-        font-weight: 700;
-        font-size: 19px;
-    }
+.app-navigation__link {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: 700;
+    font-size: 19px;
+}
 
-    .app-navigation__list-item--current {
-        border-bottom: 4px solid #00703C;
-    }
+.app-navigation__list-item--current {
+    border-bottom: 4px solid #00703C;
+}
 
-  .grid-container-assets {
+.grid-container-assets {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 10px;
-  }
+}
 
-  .grid-item {
+.grid-item {
     padding: 10px;
-  }
+}
 
+ol, li {
+    list-style-type: none;
+}
 
-  ol {
-      list-style-type: none;
-  }
-  li {
-      list-style-type: none;
-  }
-    .govuk-main-wrapper {
+.govuk-main-wrapper {
     padding-top: 0px;
     padding-bottom: 60px;
-  }
-  .govuk-grid-row {
+}
+
+.govuk-grid-row {
     padding-top: 60px;
     padding-bottom: 0px;
-  }
-
-  .govuk-header__container {
-          position: relative;
-          margin-bottom: -10px;
-          padding-top: 10px;
-          border-bottom: 10px solid #87C426;
-        }
-        .app-navigation__list {
-            line-height: 1.5;
-            box-sizing: border-box;
-            height: 1.125rem;
-            padding: 0 15px;
-            float: left;
-        }
-
-        .app-navigation__list-item {
-            display: inline-block;
-            margin-right: 10px;
-        }
-
-        .app-navigation__link {
-            padding-left: 20px;
-            padding-right: 20px;
-            font-weight: 700;
-            font-size: 19px;
-        }
-
-         .app-navigation__list-item--current {
-          border-bottom: 4px solid #00703C;
-        }
-        .govuk-link--no-visited-state:visited {
-          color: #00703C;
-        }
-        .govuk-link:link {
-            color: #fff;
-        }
-        .govuk-nav-link:link {
-            color: #00703C;
-        }
-        .govuk-link--no-visited-state:hover {
-            color: #00703C;
-        }
-        .app-navigation__link:hover {
-            color: #00703C;
-        }
-        .app-navigation {
-          color: #00703C;
-          border-bottom: 1px solid #b1b4b6;
-          box-sizing: border-box;
-          padding: 6px;
-        }
-   .search-container {
-        float: right;
-        padding: 10px;
-        }
-
-        .search-box {
-        box-sizing: border-box;
-        width: 100%;
-        height: 2.5rem;
-        margin-bottom: 0;
-        padding: 5px;
-        padding-left: 35px; /* Adjusted to remove redundancy */
-        border: 2px solid #fff;
-        border-radius: 0;
-        -webkit-appearance: none;
-        }
-             .app-navigation {
-    display: flex;
-    align-items: center;
 }
 
-.app-navigation__list {
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
-
- .app-navigation-grid {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .app-navigation__list {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 0;
-        margin: 0;
-        list-style: none;
-    }
-
-    .app-navigation__search {
-        display: flex;
-        align-items: center;
-    }
-
-.search-container {
-    display: flex;
-    margin-left: auto; /* this should push the search container to the right */
-}
-
-.search-box {
-    box-sizing: border-box;
-    width: 100%; /* this will make the search box take the full width of its container */
-    height: 2.5rem;
-    margin-bottom: 0;
-    padding: 5px;
-    padding-left: 35px; /* adjusted for the background image */
-    border: 2px solid #fff;
-    border-radius: 0;
-    -webkit-appearance: none;
-    appearance: none; /* For other browsers */
+.govuk-header__container {
     position: relative;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36' width='40' height='40'%3E%3Cpath d='M25.7 24.8L21.9 21c.7-1 1.1-2.2 1.1-3.5 0-3.6-2.9-6.5-6.5-6.5S10 13.9 10 17.5s2.9 6.5 6.5 6.5c1.6 0 3-.6 4.1-1.5l3.7 3.7 1.4-1.4zM12 17.5c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5-2 4.5-4.5 4.5-4.5-2-4.5-4.5z' fill='%23505a5f'%3E%3C/path%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center left -2px;
-    background-size: 40px 40px;
+    margin-bottom: -10px;
+    padding-top: 10px;
+    border-bottom: 10px solid #87C426;
 }
 
-
-
-    .app-navigation__list {
-        line-height: 1.5;
-        box-sizing: border-box;
-        height: 1.125rem;
-        padding: 0 15px;
-        float: left;
-    }
-
-    .app-navigation__list-item {
-        display: inline-block;
-        margin-right: 16px;
-    }
-    app-navigation__search .search-container {
-    margin-left: 30px;
-
-}
-    a.app-navigation__link[href="/layouts/application-processing"] {
-    width: 200px;
+.govuk-link--no-visited-state:visited {
+    color: #00703C;
 }
 
-    .app-navigation__link {
-        padding-left: 10px;
-        padding-right: 10px;
-        font-weight: 700;
-        font-size: 19px;
-    }
+.govuk-link:link {
+    color: #fff;
+}
 
-    .app-navigation__list-item--current {
-        border-bottom: 4px solid #00703C;
-    }
+.govuk-nav-link:link {
+    color: #00703C;
+}
+
+.govuk-link--no-visited-state:hover, .app-navigation__link:hover {
+    color: #00703C;
+}
+
 </style>
 <main class="govuk-main-wrapper">
       <div class="govuk-width-container">
