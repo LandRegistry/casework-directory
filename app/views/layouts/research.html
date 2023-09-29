@@ -7,43 +7,43 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 {% block content %}
 
 <script>
-    // On Document Ready
     document.addEventListener('DOMContentLoaded', function () {
 
-        // Update Navigation Highlight based on Current URL
-        let links = document.querySelectorAll('.Govlink-bold'); // Updated Selector
-        links.forEach(link => {
+        // Navigation Highlight based on Current URL
+        let navLinks = document.querySelectorAll('#app-navigation .app-navigation__link');
+
+        navLinks.forEach(link => {
             if (window.location.href.includes(link.getAttribute('href'))) {
-                link.parentNode.classList.add('app-navigation__list-item--current'); // Assuming parent li should have this class
+                link.closest('.app-navigation__list-item').classList.add('app-navigation__list-item--current');
             }
         });
 
-        // Toggle Sections
-        const parentToggles = document.querySelectorAll('.Govlink-bold'); // Updated Selector
-        parentToggles.forEach(toggle => {
+        // Accordion Toggle
+        let accordionToggles = document.querySelectorAll('#accordion-sections .Parent .Govlink-bold');
+
+        accordionToggles.forEach(toggle => {
             toggle.addEventListener('click', function (e) {
                 e.preventDefault();
-                const sectionId = this.getAttribute('data-toggle');
-                const content = document.getElementById(sectionId);
+                let sectionId = this.getAttribute('data-toggle');
+                let content = document.getElementById(sectionId);
                 if (content) {
                     content.classList.toggle('show');
-                }
-
-                // Find the parent li of the clicked toggle and toggle the class on it
-                const parentLi = toggle.closest('.Parent'); // Updated Selector
-                if (parentLi) {
-                    parentLi.classList.toggle('app-subnav__section-item--current');
                 }
             });
         });
 
-        // Smooth Scroll to Top on "Back to Top" Link Click
-        document.querySelector('.app-back-to-top__link').addEventListener('click', function (e) {
-            e.preventDefault();
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        });
+        // Back to Top
+        let backToTopLink = document.querySelector('.app-back-to-top__link');
+        if (backToTopLink) {
+            backToTopLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
     });
 </script>
+
+
 <style>
 body, h1, h2, h3, h4, h5, h6, p, a {
     font-family: 'Arial', sans-serif !important;
@@ -138,9 +138,7 @@ a.app-navigation__link[href="/layouts/application-processing"] {
     gap: 10px;
 }
 
-.grid-item {
-    padding: 10px;
-}
+
 
 ol, li {
     list-style-type: none;
@@ -211,28 +209,22 @@ ol, li {
 .toggle-content {
     display: none;
     list-style-type: none;
-    padding-left: 6px;
     margin: 0;
     color: #00703C;
-}
-.Parent  > .Gov-link-reg, {
-    padding-top:2px;
 }
 
 .toggle-content.show {
     display: block;
-    padding-left: 16px;
     line-height: 1.5em;
+    padding-left: 0px;
+     color: #00703C;
+
 }
 
-.font-size-16 {
-    line-height: 1.5em;
-    padding-left: 6px;
-    color: #00703C;
+.Parent  > .Gov-link-reg, {
+    padding-top:2px;
 }
-
 .Govlink-bold {
-    padding-left: 16px;
     line-height: 2em;
     font-weight: bold;
 }
@@ -248,7 +240,6 @@ ol, li {
 }
 
 .Parent > .Govlink-bold, .Govlink-bold:visited, .Gov-link-reg:visited, .Govlink-bold:active, .Gov-link-reg:active,{
-   padding-left: 16px;
     color: #00703C;
     line-height: 1.5em;
 }
