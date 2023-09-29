@@ -1,0 +1,33 @@
+{#
+For guidance on how to use layouts see:
+https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
+#}
+
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %} {# or extend another layout if needed #}
+{% block content %}
+
+<style>
+body, p, a,  {
+    font-family: 'Arial', sans-serif !important;
+    color: 00703C;
+}
+
+
+h1, h2, h3, h4, h5, h6, {
+    font-family: 'Arial', sans-serif !important;
+}
+
+
+</style>
+<div class="govuk-width-container">
+  <a href="#" class="govuk-back-link">Back</a>
+  <main class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">Two-thirds column</h1>
+        <p class="govuk-body">This is a paragraph inside a two-thirds wide column</p>
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}
