@@ -132,11 +132,6 @@ a.app-navigation__link[href="/layouts/application-processing"] {
 }
 
 
-
-
-
-
-
 .grid-container-assets {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -168,6 +163,7 @@ ol, li {
     border-bottom: 10px solid #87C426;
 }
 
+
 .govuk-link--no-visited-state:visited, .govuk-nav-link:link, .govuk-link--no-visited-state:hover, .app-navigation__link:hover {
     color: #00703C;
 }
@@ -196,6 +192,7 @@ ol, li {
 
 .app-back-to-top__link:hover {
     background-color: #00703C;
+    color: #fff;
 }
 
 .app-subnav__section-item--current {
@@ -209,7 +206,9 @@ ol, li {
     padding-left: 6px;
     margin: 0;
     color: #00703C;
-    line-height: 1.5em;
+}
+.Parent  > .Gov-link-reg, {
+    padding-top:2px;
 }
 
 .toggle-content.show {
@@ -226,7 +225,7 @@ ol, li {
 
 .Govlink-bold {
     padding-left: 16px;
-    line-height: 1.5em;
+    line-height: 2em;
     font-weight: bold;
 }
 
@@ -237,10 +236,11 @@ ol, li {
 
 .Parent > .Govlink-bold, .Gov-link-reg, .toggle-content {
     color: #00703C;
-    line-height: 1.5em;
+    line-height:  1.5em;
 }
 
-.Parent > .Govlink-bold:hover, .Gov-link-reg:hover, .toggle-content:hover, .Govlink-bold:visited, .Gov-link-reg:visited, .toggle-content:visited, .Govlink-bold:active, .Gov-link-reg:active, .toggle-content:active {
+.Parent > .Govlink-bold, .Govlink-bold:visited, .Gov-link-reg:visited, .Govlink-bold:active, .Gov-link-reg:active,{
+   padding-left: 16px;
     color: #00703C;
     line-height: 1.5em;
 }
@@ -248,275 +248,165 @@ ol, li {
 a:link, .govuk-link:link {
   color: #00703C;
 }
+
+.govuk-heading-contents {
+    font-weight: 400;
+}
 </style>
 
 
- <main class="govuk-main-wrapper">
-      <div class="govuk-width-container">
-       <div class="govuk-width-container">
- <div class="govuk-width-container">
-    <div class="custom-nav-container">
-        <nav id="app-navigation" class="app-navigation js-app-navigation govuk-clearfix" role="navigation" aria-labelledby="app-navigation-heading">
-            <h2 class="govuk-visually-hidden" id="app-navigation-heading">Menu</h2>
-            <div class="app-navigation-grid">
-                <ul class="app-navigation__list app-width-container">
-                    <li class="app-navigation__list-item">
-                        <a class="govuk-nav-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/index">
-                            Home
-                        </a>
-                    </li>
-                    <li class="app-navigation__list-item">
-                        <a class="govuk-nav-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/layouts/workflow">
-                            Workflow
-                        </a>
-                    </li>
-                    <li class="app-navigation__list-item">
-                        <a class="govuk-nav-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/layouts/processing">
-                            Application Processing
-                        </a>
-                    </li>
-                    <li class="app-navigation__list-item">
-                        <a class="govuk-nav-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/layouts/notices">
-                            Notices
-                        </a>
-                    </li>
-                    <li class="app-navigation__list-item">
-                        <a class="govuk-nav-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/layouts/research">
-                            Research
-                        </a>
-                    </li>
-                </ul>
-                <div class="app-navigation__search">
-                    <div class="search-container">
-                        <input type="text" class="search-box" placeholder="Search...">
+<main class="govuk-main-wrapper">
+    <div class="govuk-width-container">
+        <div class="custom-nav-container">
+                <nav id="app-navigation" class="app-navigation js-app-navigation govuk-clearfix" role="navigation" aria-labelledby="app-navigation-heading">
+                    <h2 class="govuk-visually-hidden" id="app-navigation-heading">Menu</h2>
+                    <div class="app-navigation-grid">
+                        <ul class="app-navigation__list app-width-container">
+                            <li class="app-navigation__list-item">
+                                <a class="govuk-nav-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/index">
+                                    Home
+                                </a>
+                            </li>
+                            <li class="app-navigation__list-item">
+                                <a class="govuk-nav-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/layouts/workflow">
+                                    Workflow
+                                </a>
+                            </li>
+                            <li class="app-navigation__list-item">
+                                <a class="govuk-nav-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/layouts/processing">
+                                    Application Processing
+                                </a>
+                            </li>
+                            <li class="app-navigation__list-item">
+                                <a class="govuk-nav-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/layouts/notices">
+                                    Notices
+                                </a>
+                            </li>
+                            <li class="app-navigation__list-item">
+                                <a class="govuk-nav-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/layouts/research">
+                                    Research
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="app-navigation__search">
+                            <div class="search-container">
+                                <input type="text" class="search-box" placeholder="Search...">
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </nav>
+        <div class="govuk-grid-row">
+                <h1 class="govuk-heading-xl">Caseworker research</h1>
+        </div>
+
+        <nav id="accordion-sections">
+            <h4 class="govuk-heading-contents">Contents</h4>
+
+            <ol class="contents-items font-size-16" style="list-style-type: none; padding-left: 0;">
+
+                <!-- Section 1: Preparing and Planning -->
+                <li class="Parent">
+                    <a class="Govlink-bold" data-toggle="preparing-and-planning">Preparing and Planning</a>
+                    <ol class="toggle-content" id="preparing-and-planning">
+                        <li><a class="Gov-link-reg" href="#preparing-for-the-day">Preparing for the Day</a></li>
+                        <li><a class="Gov-link-reg" href="#setting-up-workspace">Workspace Setup</a></li>
+                        <li><a class="Gov-link-reg" href="#determining-daily-application-priorities">Determining Daily Priorities</a></li>
+                    </ol>
+                </li>
+
+                <!-- Section 2: Application Assessment -->
+                <li class="Parent">
+                    <a class="Govlink-bold" data-toggle="application-assessment">Application Assessment</a>
+                    <ol class="toggle-content" id="application-assessment">
+                        <li><a class="Gov-link-reg" href="#selecting-next-priority-application">Selecting the Next Priority</a></li>
+                        <li><a class="Gov-link-reg" href="#reviewing-and-assessing-application">Reviewing and Assessing</a></li>
+                        <li><a class="Gov-link-reg" href="#evaluating-in-progress-vs-new">Evaluating In-Progress vs. New Applications</a></li>
+                        <li><a class="Gov-link-reg" href="#organizing-application-documents-for-review">Organizing Documents</a></li>
+                        <li><a class="Gov-link-reg" href="#determining-application-requirements-and-transactions">Determining Requirements and Transactions</a></li>
+                    </ol>
+                </li>
+
+                <!-- Section 3: Search and Information Gathering -->
+                <li class="Parent">
+                    <a class="Govlink-bold" data-toggle="search-and-information-gathering">Search and Information Gathering</a>
+                    <ol class="toggle-content" id="search-and-information-gathering">
+                        <li><a class="Gov-link-reg" href="#conducting-job-search">Job Search</a></li>
+                        <li><a class="Gov-link-reg" href="#gathering-searches-information">Gathering Searches</a></li>
+                        <li><a class="Gov-link-reg" href="#assessing-searches-information">Assessing Searches</a></li>
+                        <li><a class="Gov-link-reg" href="#assessing-impact-of-title-history-priority-searches-or-stops">Assessing Title History, Priority Searches, Stops</a></li>
+                        <li><a class="Gov-link-reg" href="#retrieving-search-information-by-title-number">Retrieving Search Information</a></li>
+                    </ol>
+                </li>
+
+                <!-- Section 4: Decision Making and Verification -->
+                <li class="Parent">
+                    <a class="Govlink-bold" data-toggle="decision-making-and-verification">Decision Making and Verification</a>
+                    <ol class="toggle-content" id="decision-making-and-verification">
+                        <li><a class="Gov-link-reg" href="#evaluating-search-protection">Search Protection</a></li>
+                        <li><a class="Gov-link-reg" href="#deciding-confirming-actions">Deciding and Confirming Actions</a></li>
+                        <li><a class="Gov-link-reg" href="#verifying-credentials">Verifying Applicant Credentials</a></li>
+                        <li><a class="Gov-link-reg" href="#confirming-legal-representation-for-all-parties">Confirming All Parties Legal Representation</a></li>
+                    </ol>
+                </li>
+
+                <!-- Section 5: Financial Management -->
+                <li class="Parent">
+                    <a class="Govlink-bold" data-toggle="financial-management">Financial Management</a>
+                    <ol class="toggle-content" id="financial-management">
+                        <li><a class="Gov-link-reg" href="#managing-fees">Managing Fees and Payments</a></li>
+                        <li><a class="Gov-link-reg" href="#calculating-and-confirming-due-fees">Calculating and Confirming Fees</a></li>
+                    </ol>
+                </li>
+
+                <!-- Section 6: Coordination and Transaction Assessment -->
+                <li class="Parent">
+                    <a class="Govlink-bold" data-toggle="coordination-and-transaction-assessment">Coordination and Transaction Assessment</a>
+                    <ol class="toggle-content" id="coordination-and-transaction-assessment">
+                        <li><a class="Govlink-reg" href="#coordinating-applications">Coordinating with Applications</a></li>
+                        <li><a class="Govlink-reg" href="#assessing-transactions">Assessing Transactions</a></li>
+                        <li><a class="Govlink-reg" href="#verifying-transaction-alignment-with-registers">Verifying Transaction with Registers</a></li>
+                        <li><a class="Govlink-reg" href="#compliance-check-for-hmlr-requirements">Compliance Check for HMLR Requirements</a></li>
+                    </ol>
+                </li>
+
+                <!-- Section 7: Register Updates and Notices -->
+                <li class="Parent">
+                    <a class="Govlink-bold" data-toggle="register-updates-and-notices">Register Updates and Notices</a>
+                    <ol class="toggle-content" id="register-updates-and-notices">
+                        <li><a class="Govlink-reg" href="#preparing-updates">Preparing for Register Updates</a></li>
+                        <li><a class="Govlink-reg" href="#drafting-updates">Drafting Register Updates</a></li>
+                        <li><a class="Govlink-reg" href="#issuing-notices">Issuing Notices</a></li>
+                        <li><a class="Govlink-reg" href="#identifying-required-pre-and-post-completion-notices">Identifying Pre-completion Notices</a></li>
+                    </ol>
+                </li>
+
+                <!-- Section 8: Finalization and Documentation -->
+                <li class="Parent">
+                    <a class="Govlink-bold" data-toggle="finalization-and-documentation">Finalization and Documentation</a>
+                    <ol class="toggle-content" id="finalization-and-documentation">
+                        <li><a class="Govlink-reg" href="#recording-defects">Recording Application Defects</a></li>
+                        <li><a class="Govlink-reg" href="#resolving-issues">Resolving Application Issues</a></li>
+                        <li><a class="Govlink-reg" href="#submitting-requisition">Submitting Requisition</a></li>
+                        <li><a class="Govlink-reg" href="#finalizing-application">Finalizing the Application</a></li>
+                        <li><a class="Govlink-reg" href="#storing-documents">Storing Application Documents</a></li>
+                    </ol>
+                </li>
+            </ol>
         </nav>
-    </div>
-</div>
 
 
-</div>
-
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-quarter">
-      <nav id="accordion-sections">
-        <ol class="contents-items font-size-16" style="list-style-type: none; padding-left: 0;">
-          <!-- Section 1: Preparing for the Day -->
-     <li class="Parent">
-    <a class="Govlink-bold" data-toggle="preparing-for-the-day">Preparing for the Day</a>
-    <ol class="toggle-content" id="preparing-for-the-day">
-        <li><a class="Gov-link-reg" href="#setting-up-workspace">Workspace Setup</a></li>
-        <li><a class="Gov-link-reg" href="#determining-daily-application-priorities">Determining Daily Priorities</a></li>
-    </ol>
-    </li>
-       <!-- Section 2: Selecting the Next Priority Application -->
-<li class="Parent">
-    <a class="Govlink-bold" data-toggle="selecting-next-priority-application">Selecting the Next Priority</a>
-    <ol class="toggle-content" id="selecting-next-priority-application">
-        <li><a class="Gov-link-reg" href="#evaluating-in-progress-vs-new">Evaluating In-Progress vs. New Applications</a></li>
-        <li><a class="Gov-link-reg" href="#opening-existing-or-new">Opening an Existing or New</a></li>
-    </ol>
-</li>
-
-<!-- Section 3: Reviewing and Assessing the Application -->
-<li class="Parent">
-    <a class="Govlink-bold" data-toggle="reviewing-and-assessing-application">Reviewing and Assessing</a>
-    <ol class="toggle-content" id="reviewing-and-assessing-application">
-        <li><a class="Gov-link-reg" href="#organizing-application-documents-for-review">Organizing Documents</a></li>
-        <li><a class="Gov-link-reg" href="#determining-application-requirements-and-transactions">Determining Requirements and Transactions</a></li>
-    </ol>
-</li>
-
-<!-- Section 4: Conducting Job Search -->
-<li class="Parent">
-    <a class="Govlink-bold" data-toggle="conducting-job-search">Conducting Job Search</a>
-    <ol class="toggle-content" id="conducting-job-search">
-        <li><a class="Gov-link-reg" href="#assessing-impact-of-title-history-priority-searches-or-stops">Assessing Title History, Priority Searches, Stops</a></li>
-    </ol>
-</li>
-
-<!-- Section 5: Defining the Searches Task -->
-<li class="Parent">
-    <a class="Govlink-bold" data-toggle="defining-the-searches-task">Defining the Searches Task</a>
-    <ol class="toggle-content" id="defining-the-searches-task">
-        <li><a class="Gov-link-reg" href="#reviewing-previous-progress-on-searches">Reviewing Previous Progress</a></li>
-        <li><a class="Gov-link-reg" href="#adapting-search-tasks-based-on-previous-work">Adapting Search based on Previous Work</a></li>
-        <li><a class="Gov-link-reg" href="#identifying-affected-applicants">Identifying Affected Applicants</a></li>
-        <li><a class="Gov-link-reg" href="#retrieving-search-information-by-title-number">Retrieving Search Information</a></li>
-    </ol>
-</li>
-
-   <!-- Section 6: Gathering Searches Information -->
-<li class="Parent">
-    <a class="Govlink-bold" data-toggle="gathering-searches-information">Gathering Searches Information</a>
-    <ol class="toggle-content" id="gathering-searches-information">
-        <li><a class="Gov-link-reg" href="#determining-the-number-of-searches-at-the-time-of-application"> Searches at the Time of Application</a></li>
-        <li><a class="Gov-link-reg" href="#assessing-time-periods-covered-by-searches">Assessing Time Periods s</a></li>
-        <li><a class="Gov-link-reg" href="#matching-names-against-searches">Matching Names Against Searches</a></li>
-        <li><a class="Gov-link-reg" href="#impact-of-other-applications-on-search-tasks">Impact of Other Applications on Search Tasks</a></li>
-    </ol>
-</li>
-
-<!-- Section 7: Assessing the Searches Information -->
-<li class="Parent">
-    <a class="Govlink-bold" data-toggle="assessing-the-searches-information">Assessing the Searches Information</a>
-    <ol class="toggle-content" id="assessing-the-searches-information">
-        <li><a class="Gov-link-reg" href="#matching-applicant-names-to-searches">Matching Applicant Names to Searches</a></li>
-        <li><a class="Gov-link-reg" href="#prioritizing-searches-by-time-period">Prioritizing Searches by Time</a></li>
-    </ol>
-</li>
-
-<!-- Section 8: Evaluating Search Protection -->
-<li class="Parent">
-    <a class="Govlink-bold" data-toggle="evaluating-search-protection">Evaluating Search Protection</a>
-    <ol class="toggle-content" id="evaluating-search-protection">
-        <li><a class="Gov-link-reg" href="#dismissing-searches-matching-applicant-names">Dismissing Searches Matching Applicant Names</a></li>
-        <li><a class="Gov-link-reg" href="#assessing-search-related-protection">Assessing Search Protection</a></li>
-    </ol>
-</li>
-
-<!-- Section 9: Deciding and Confirming Actions Required -->
-<li class="Parent">
-    <a class="Govlink-bold" data-toggle="deciding-confirming-actions">Deciding and Confirming Actions</a>
-    <ol class="toggle-content" id="deciding-confirming-actions">
-        <li><a class="Gov-link-reg" href="#confirming-irrelevance-or-expiry-of-searches">Confirming Irrelevance or Expiry of Searches</a></li>
-        <li><a class="Gov-link-reg" href="#confirming-valid-search-protections">Confirming Valid Search Protections</a></li>
-        <li><a class="Gov-link-reg" href="#referring-to-senior-officers-for-further-consideration">Referring to Senior Officers</a></li>
-    </ol>
-</li>
-
-    <!-- Section 10: Verifying Applicant Credentials -->
-<li class="Parent">
-    <a class="Govlink-bold" data-toggle="verifying-credentials">Verifying Applicant Credentials</a>
-    <ol class="toggle-content" id="verifying-credentials">
-        <li><a class="Gov-link-reg" href="#confirming-legal-representation-for-all-parties">Confirming All Parties Legal Representation </a></li>
-    </ol>
-</li>
-
-<!-- Section 11: Managing Fees and Payments -->
-<li class="Parent">
-    <a class="Govlink-bold" data-toggle="managing-fees">Managing Fees and Payments</a>
-    <ol class="toggle-content" id="managing-fees">
-        <li><a class="Gov-link-reg" href="#calculating-and-confirming-due-fees">Calculating and Confirming Fees</a></li>
-    </ol>
-</li>
-
-<!-- Section 12: Coordinating with Prior or Subsequent Applications -->
-<li class="Parent">
-    <a class="Govlink-bold" data-toggle="coordinating-applications">Coordinating with Subsequent Apps</a>
-    <a class="Govlink-bold" data-toggle="coordinating-applications">Coordinating with Prior Apps</a>
-    <ol class="toggle-content" id="coordinating-applications">
-        <li><a class="Gov-link-reg" href="#identifying-necessary-additional-applications">Identifying Necessary Additional Applications</a></li>
-    </ol>
-</li>
-
-<!-- Section 13: Assessing Transactions -->
-<li class="Parent">
-    <a class="Govlink-bold" data-toggle="assessing-transactions">Assessing Transactions</a>
-    <ol class="toggle-content" id="assessing-transactions">
-        <li><a class="Gov-link-reg" href="#verifying-transaction-alignment-with-registers">Verifying Transaction with Registers</a></li>
-        <li><a class="Gov-link-reg" href="#compliance-check-for-hmlr-requirements">Compliance Check for HMLR Requirements</a></li>
-    </ol>
-</li>
-
-
-    <!-- Section 14: Preparing for Register Updates -->
-<li class="Parent">
-    <a class="Govlink-bold" data-toggle="preparing-updates">Preparing for Register Updates</a>
-    <ol class="toggle-content" id="preparing-updates">
-        <li><a class="Gov-link-reg" href="#understanding-hmlr-transaction-requirements">Understanding HMLR Transaction Requirements</a></li>
-        <li><a class="Gov-link-reg" href="#consulting-practice-guidance">Consulting Practice Guidance</a></li>
-    </ol>
-</li>
-
-<!-- Section 15: Drafting Register Updates -->
-<li class="Parent">
-    <a class="Govlink-bold" data-toggle="drafting-updates">Drafting Register Updates</a>
-    <ol class="toggle-content" id="drafting-updates">
-        <li><a class="Gov-link-reg" href="#verifying-information-accuracy">Verifying Information Accuracy</a></li>
-        <li><a class="Gov-link-reg" href="#removing-obsolete-register-entries">Removing Obsolete Register Entries</a></li>
-        <li><a class="Gov-link-reg" href="#drafting-new-register-entries">Drafting New Register Entries</a></li>
-    </ol>
-</li>
-
-<!-- Section 16: Issuing Notices -->
-<li class="Parent">
-    <a class="Govlink-bold" data-toggle="issuing-notices">Issuing Notices</a>
-    <ol class="toggle-content" id="issuing-notices">
-        <li><a class="Gov-link-reg" href="#identifying-required-pre-and-post-completion-notices">Identifying Pre-completion Notices</a></li>
-        <li><a class="Gov-link-reg" href="#identifying-required-pre-and-post-completion-notices">Identifying Post-Completion Notices</a></li>
-        <li><a class="Gov-link-reg" href="#preparing-and-issuing-notices">Preparing Notices</a></li>
-        <li><a class="Gov-link-reg" href="#preparing-and-issuing-notices">Issuing Notices</a></li>
-    </ol>
-</li>
-
-<!-- Section 17: Recording Application Defects -->
-<li class="Parent">
-    <a class="Govlink-bold" data-toggle="recording-defects">Recording Application Defects</a>
-    <ol class="toggle-content" id="recording-defects">
-        <li><a class="Gov-link-reg" href="#identifying-and-recording-defects">Identifying Defects</a></li>
-        <li><a class="Gov-link-reg" href="#identifying-and-recording-defects">Recording Defects</a></li>
-    </ol>
-</li>
-
-
-    <!-- Section 18: Resolving Application Issues -->
-<li class="Parent">
-    <a class="Govlink-bold" data-toggle="resolving-issues">Resolving Application Issues</a>
-    <ol class="toggle-content" id="resolving-issues">
-        <li><a class="Gov-link-reg" href="#contacting-customers-for-missing-info">Contacting Customers for Missing Info</a></li>
-        <li><a class="Gov-link-reg" href="#drafting-handover-notes-for-next-caseworker">Drafting Handover Notes for Next Caseworker</a></li>
-        <li><a class="Gov-link-reg" href="#preparing-requisition-letters">Preparing Requisition Letters</a></li>
-    </ol>
-</li>
-
-<!-- Section 19: Submitting Requisition -->
-<li class="Parent">
-    <a class="Govlink-bold" data-toggle="submitting-requisition">Submitting Requisition</a>
-    <ol class="toggle-content" id="submitting-requisition">
-        <li><a class="Gov-link-reg" href="#final-checks-and-requisition-submission">Final Checks and Requisition Submission</a></li>
-    </ol>
-</li>
-
-<!-- Section 20: Finalizing the Application -->
-<li class="Parent">
-    <a class="Govlink-bold" data-toggle="finalizing-application">Finalizing the Application</a>
-    <ol class="toggle-content" id="finalizing-application">
-        <li><a class="Gov-link-reg" href="#final-verification-and-completion">Final Verification and Completion</a></li>
-        <li><a class="Gov-link-reg" href="#storing-key-decisions-for-post-completion">Storing Key Decisions for Post-Completion</a></li>
-    </ol>
-</li>
-
-<!-- Section 21: Storing Application Documents -->
-<li class="Parent">
-    <a class="Govlink-bold" data-toggle="storing-documents">Storing Application Documents</a>
-    <ol class="toggle-content" id="storing-documents">
-        <li><a class="Gov-link-reg" href="#storing-documents-according-to-lr-policy">Storing Documents According to LR Policy</a></li>
-    </ol>
-</li>
-
-    <div class="app-back-to-top" data-module="app-back-to-top">
-    <p class="govuk-body">
-        <a href="#top" class="govuk-link govuk-link--inverse app-back-to-top__link">
-            <svg role="presentation" focusable="false" class="app-back-to-top__icon" xmlns="http://www.w3.org/2000/svg" width="10" height="14" viewBox="0 0 13 17">
-                <path fill="currentColor" d="M6.5 0L0 6.5 1.4 8l4-4v12.7h2V4l4.3 4L13 6.4z"></path>
-            </svg>
-            Back to top
-        </a>
-    </p>
-    </div>
-
-  </div>
-    <div class="govuk-grid-column-three-quarters">
-      <h1 class="govuk-heading-xl">Caseworker research</h1>
-          <p>Getting the right work, to the right person, at the right time.</p>
-      </div>
-  </div>
-
+        <div class="app-back-to-top" data-module="app-back-to-top">
+            <p class="govuk-body">
+                <a href="#top" class="govuk-link-top govuk-link--inverse app-back-to-top__link">
+                    <svg role="presentation" focusable="false" class="app-back-to-top__icon" xmlns="http://www.w3.org/2000/svg" width="10" height="14" viewBox="0 0 13 17">
+                        <path fill="currentColor" d="M6.5 0L0 6.5 1.4 8l4-4v12.7h2V4l4.3 4L13 6.4z"></path>
+                    </svg>
+                    Back to top
+                </a>
+            </p>
+        </div>
+    </nav>
 </main>
-</div>
+
 
 {% endblock %}
