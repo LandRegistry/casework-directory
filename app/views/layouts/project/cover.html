@@ -6,21 +6,37 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %} {# or extend another layout if needed #}
 {% block content %}
 
+<script>
+
+</script>
 <style>
-body, p, a,  {
+.govuk-header__container {
+border-bottom: 10px solid #87C426;
+}
+
+body, p, a, govuk-back-link  {
     font-family: 'Arial', sans-serif !important;
     color: 00703C;
 }
 
 
-h1, h2, h3, h4, h5, h6, {
+h1, h2, h3, h4, h5, h6, govuk-heading-xl {
     font-family: 'Arial', sans-serif !important;
 }
 
-
+.govuk-main-wrapper {
+    padding-top: 0px;
+    padding-bottom: 60px;
+}
+govuk-header__container {
+    position: relative;
+    margin-bottom: -10px;
+    padding-top: 10px;
+    border-bottom: 10px solid #87C426;
+}
 </style>
 <div class="govuk-width-container">
-  <a href="#" class="govuk-back-link">Back</a>
+   <a href="javascript:history.back()" class="govuk-back-link">Back</a>
   <main class="govuk-main-wrapper">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
