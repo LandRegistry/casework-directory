@@ -174,10 +174,18 @@ ol, li {
 
 .app-back-to-top {
     z-index: 99;
-    padding-left: 2px;
-    padding-bottom: 40px;
-    padding-top: 40px;
+    {# padding-left: 2px; #}
+    {# padding-bottom: 40px; #}
+    padding-top: 800px;
+    position: fixed;
+    right: 20px; /* or any desired offset from the right */
+    bottom: 20px; /* or any desired offset from the bottom */
+    top: auto;
+    transform: none;
+
+
 }
+
 
 .app-back-to-top__link {
     display: inline-block;
@@ -252,6 +260,31 @@ a:link, .govuk-link:link {
 .govuk-heading-contents {
     font-weight: 400;
 }
+.govuk-grid-column-one-quarter {
+    padding-left: 50px;
+}
+
+.tiny-link{
+    font-family: "GDS Transport", arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-underline-offset: 0.1578em;
+   line-height: 1.5em;
+}
+.govuk-grid-column-two-thirds,
+.govuk-grid-column-one-third {
+    border-top: 1px solid grey;
+    padding-top: 50px;
+}
+
+.govuk-grid-column-two-thirds {
+     line-height: 1.5em;
+}
+
+.govuk-inset-text {
+     line-height: 1.5em;
+
+}
 </style>
 
 
@@ -296,7 +329,6 @@ a:link, .govuk-link:link {
                     </div>
                 </nav>
      <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l govuk-!-margin-bottom-2">Caseworker research</h1>
 
         <nav id="accordion-sections">
@@ -309,8 +341,8 @@ a:link, .govuk-link:link {
                     <a class="Govlink-bold" data-toggle="preparing-and-planning">Preparing and Planning</a>
                     <ol class="toggle-content" id="preparing-and-planning">
                         <li><a class="Gov-link-reg" href="#preparing-for-the-day">Preparing for the Day</a></li>
-                        <li><a class="Gov-link-reg" href="#setting-up-workspace">Workspace Setup</a></li>
-                        <li><a class="Gov-link-reg" href="#determining-daily-application-priorities">Determining Daily Priorities</a></li>
+                        <li><a class="Gov-link-reg" href="#workspace-setup">Workspace Setup</a></li>
+                        <li><a class="Gov-link-reg" href="#determining-daily-priorities">Determining Daily Priorities</a></li>
                     </ol>
                 </li>
 
@@ -393,19 +425,159 @@ a:link, .govuk-link:link {
                 </li>
             </ol>
         </nav>
+ <div class="govuk-grid-row">
+    <!-- Title Section -->
+    <div class="govuk-grid-column-two-thirds">
+        <h1 id="preparing-for-the-day" class="govuk-heading-l govuk-!-margin-bottom-2">Preparing for the day</h1>
+         <div class="govuk-body">
+            <p>This section provides an overview of various design and formatting elements used in content creation, such as headings, subheadings, paragraphs, links, and lists.</p>
 
+            <!-- Heading Section -->
+            <h2 class="govuk-heading-m">Headings</h2>
+            <p>Headings structure the content and guide the reader through the different sections. They are crucial for both readability and SEO.</p>
 
-        <div class="app-back-to-top" data-module="app-back-to-top">
-            <p class="govuk-body">
-                <a href="#top" class="govuk-link-top govuk-link--inverse app-back-to-top__link">
-                    <svg role="presentation" focusable="false" class="app-back-to-top__icon" xmlns="http://www.w3.org/2000/svg" width="10" height="14" viewBox="0 0 13 17">
-                        <path fill="currentColor" d="M6.5 0L0 6.5 1.4 8l4-4v12.7h2V4l4.3 4L13 6.4z"></path>
-                    </svg>
-                    Back to top
-                </a>
-            </p>
+            <!-- Subheading Section -->
+            <h3 class="govuk-heading-s">Subheadings</h3>
+            <p>Subheadings divide content under each heading into smaller, more specific sections, making it more scannable and easier to read.</p>
+
+            <!-- Paragraph Section -->
+            <h2 class="govuk-heading-m">Paragraphs</h2>
+            <p>Paragraphs hold the main content. They are blocks of text separated by space and should contain coherent thoughts or ideas.</p>
+
+            <!-- Links Section -->
+            <h2 class="govuk-heading-m">Links</h2>
+            <p>Links direct the reader to additional resources or related pages. They should have descriptive anchor text. Example: <a href="#" class="govuk-link">Read more about content design</a>.</p>
+
+            <!-- Lists Section -->
+            <h2 class="govuk-heading-m">Lists</h2>
+            <p>Lists are used to present multiple items in a structured manner. They can be unordered (bulleted) or ordered (numbered).</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+            </ul>
+
+            <!-- Additional Resources Section -->
+            <h2 class="govuk-heading-m">Additional Resources</h2>
+            <p>Explore various resources to dive deeper into content design and formatting concepts.</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li><a href="#" class="govuk-link">Content Design Guide</a></li>
+                <li><a href="#" class="govuk-link">Formatting Best Practices</a></li>
+                <li><a href="#" class="govuk-link">SEO and Readability</a></li>
+            </ul>
         </div>
-    </nav>
+    </div>
+        </div>
+        <!-- Additional Links Section -->
+        <div class="govuk-grid-column-one-third">
+            <h4 class="tiny-link">Additional links</h4>
+            <a href="https://landregistryuk.sharepoint.com/sites/Designandcontentdesign" target="_blank" class="tiny-link">Visit the design practice</a>
+            <br>
+            <a href="layouts/research.html" target="_blank" class="tiny-link">Caseworker Research</a>
+        </div>
+    </div>
+ <div class="govuk-grid-row">
+    <!-- Title Section -->
+    <div class="govuk-grid-column-two-thirds">
+        <h1 id="workspace-setup" class="govuk-heading-l govuk-!-margin-bottom-2">Workspace Setup</h1>
+       <div class="govuk-body">
+    <div class="govuk-body">
+            <p>This section provides an overview of various design and formatting elements used in content creation, such as headings, subheadings, paragraphs, links, and lists.</p>
+
+            <!-- Heading Section -->
+            <h2 class="govuk-heading-m">Headings</h2>
+            <p>Headings structure the content and guide the reader through the different sections. They are crucial for both readability and SEO.</p>
+
+            <!-- Subheading Section -->
+            <h3 class="govuk-heading-s">Subheadings</h3>
+            <p>Subheadings divide content under each heading into smaller, more specific sections, making it more scannable and easier to read.</p>
+
+            <!-- Paragraph Section -->
+            <h2 class="govuk-heading-m">Paragraphs</h2>
+            <p>Paragraphs hold the main content. They are blocks of text separated by space and should contain coherent thoughts or ideas.</p>
+
+            <!-- Links Section -->
+            <h2 class="govuk-heading-m">Links</h2>
+            <p>Links direct the reader to additional resources or related pages. They should have descriptive anchor text. Example: <a href="#" class="govuk-link">Read more about content design</a>.</p>
+
+            <!-- Lists Section -->
+            <h2 class="govuk-heading-m">Lists</h2>
+            <p>Lists are used to present multiple items in a structured manner. They can be unordered (bulleted) or ordered (numbered).</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+            </ul>
+
+            <!-- Additional Resources Section -->
+            <h2 class="govuk-heading-m">Additional Resources</h2>
+            <p>Explore various resources to dive deeper into content design and formatting concepts.</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li><a href="#" class="govuk-link">Content Design Guide</a></li>
+                <li><a href="#" class="govuk-link">Formatting Best Practices</a></li>
+                <li><a href="#" class="govuk-link">SEO and Readability</a></li>
+            </ul>
+        </div>
+    </div>
+
+        </div>
+        <!-- Additional Links Section -->
+        <div class="govuk-grid-column-one-third">
+            <h4 class="tiny-link">Additional links</h4>
+            <a href="https://landregistryuk.sharepoint.com/sites/Designandcontentdesign" target="_blank" class="tiny-link">Visit the design practice</a>
+            <br>
+            <a href="layouts/research.html" target="_blank" class="tiny-link">Caseworker Research</a>
+        </div>
+    </div>
+
+ <div class="govuk-grid-row">
+    <!-- Title Section -->
+    <div class="govuk-grid-column-two-thirds">
+        <h1 id="determining-daily-priorities" class="govuk-heading-l govuk-!-margin-bottom-2">Determining Daily Priorities</h1>
+       <div class="govuk-body">
+
+        <p>Explore the different strategies and techniques to enhance your preparation and planning skills. This includes Time Management, Goal Setting, and Priority Assignment.</p>
+
+        <h2 class="govuk-heading-m">Additional Resources</h2>
+        <h3 class="govuk-heading-s">Planning Tools</h3>
+        <p><a href="#" class="govuk-link">Check the most effective planning tools available</a>.</p>
+
+        <h3 class="govuk-heading-s">Planning Templates</h3>
+        <p><a href="#" class="govuk-link">Explore various templates</a> that can aid in your planning and preparation processes:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>Project Planning Templates</li>
+            <li>Time Management Templates</li>
+            <li>Goal Setting Templates</li>
+        </ul>
+
+        <h3 class="govuk-heading-s">Planning Books</h3>
+        <p><a href="#" class="govuk-link">Check the recommended books on planning</a>.</p>
+
+    </div>
+
+        </div>
+        <!-- Additional Links Section -->
+        <div class="govuk-grid-column-one-third">
+            <h4 class="tiny-link">Additional links</h4>
+            <a href="https://landregistryuk.sharepoint.com/sites/Designandcontentdesign" target="_blank" class="tiny-link">Visit the design practice</a>
+            <br>
+            <a href="layouts/research.html" target="_blank" class="tiny-link">Caseworker Research</a>
+        </div>
+    </div>
+
+<div class="app-back-to-top" data-module="app-back-to-top">
+    <p class="govuk-body">
+        <a href="#top" class="govuk-link-top govuk-link--inverse app-back-to-top__link">
+            <svg role="presentation" focusable="false" class="app-back-to-top__icon" xmlns="http://www.w3.org/2000/svg" width="10" height="14" viewBox="0 0 13 17">
+                <path fill="currentColor" d="M6.5 0L0 6.5 1.4 8l4-4v12.7h2V4l4.3 4L13 6.4z"></path>
+            </svg>
+            Back to top
+        </a>
+    </p>
+</div>
+
+
+
 </main>
 
 
