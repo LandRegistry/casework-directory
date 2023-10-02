@@ -41,6 +41,15 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
             });
         }
     });
+
+    function goBack() {
+  if (document.referrer) {
+    window.location.href = document.referrer;
+  } else {
+    // Fallback if there's no referrer (e.g., user opened the page in a new tab)
+    window.history.back();
+  }
+  }
 </script>
 
 
@@ -256,25 +265,17 @@ a:link, .govuk-link:link {
 .govuk-heading-contents {
     font-weight: 400;
 }
-.govuk-grid-column-one-quarter {
+{# .govuk-grid-column-one-quarter {
     padding-left: 50px;
-}
+} #}
 
 .tiny-link{
     font-family: "GDS Transport", arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-underline-offset: 0.1578em;
    line-height: 1.5em;
 }
 .govuk-grid-column-two-thirds,
 .govuk-grid-column-one-third {
-    {# border-top: 1px solid grey; #}
-    padding-top: 50px;
-}
-
-.govuk-grid-column-two-thirds {
-     line-height: 1.5em;
+    border-top: 1px solid grey;
 }
 
 .govuk-inset-text {
@@ -290,29 +291,12 @@ a:link, .govuk-link:link {
   border-top: none;
   padding-top: 10px;
 }
-
-.govuk-accordion__section-button {
-  width:10%;
-  padding: 10px 0 0 0;
-  padding-bottom: 0px;
+.govuk-accordion__section-button, .govuk-accordion__section-heading, govuk-accordion__section-heading, accordion-default-heading-1,  accordion-default-heading-2, accordion-default-heading-3 {
   border-top: none;
-  color: none;
   background: none;
-  text-align: left;
-  cursor: pointer;
-  -webkit-appearance: none;
 }
 
-.js-enabled .govuk-accordion__section-button {
-  width:;
-  padding-bottom: 0px;
-  border-top: none;
-  color: none;
-  background: none;
-  text-align: left;
-  cursor: pointer;
-  -webkit-appearance: none;
-}
+
 .govuk-tag-black {
   color: #0b0c0c;
   background: none;
@@ -329,41 +313,14 @@ a:link, .govuk-link:link {
 }
 
 
-.govuk-accordion__section {
-    border-bottom: 1px solid #ccc; /* Adjust color and thickness as desired */
-}
-
-.govuk-accordion {
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
-.govuk-accordion__section {
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
-/* Remove padding from the 'Show All Sections' button */
-.show-all-sections-button {
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
-
-
-
-
 </style>
 
 
 <main class="govuk-main-wrapper">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#" onclick="goBack()">Previous Page</a></li>
-    <!-- Add more breadcrumb items here if needed -->
-  </ol>
+      <a href="#" class="govuk-back-link" onclick="goBack(); return false;">Back</a>
+
 </nav>
       <h1 class="govuk-heading-l govuk-!-margin-bottom-2">Prototype (Verified by automation)</h1>
       <div class="govuk-!-margin-bottom-8">
