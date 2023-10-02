@@ -57,6 +57,14 @@ body, h1, h2, h3, h4, h5, h6, p, a {
     padding: 6px;
 }
 
+.govuk-accordion__section-header.govuk-grid-row,
+.govuk-grid-row {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-right: 0;
+  margin-left: 0;
+}
+
 .app-navigation__list {
     display: flex;
     align-items: center;
@@ -283,6 +291,68 @@ a:link, .govuk-link:link {
   padding-top: 10px;
 }
 
+.govuk-accordion__section-button {
+  width:10%;
+  padding: 10px 0 0 0;
+  padding-bottom: 0px;
+  border-top: none;
+  color: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+.js-enabled .govuk-accordion__section-button {
+  width:;
+  padding-bottom: 0px;
+  border-top: none;
+  color: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+.govuk-tag-black {
+  color: #0b0c0c;
+  background: none;
+  outline: 2px solid transparent;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: "GDS Transport", arial, sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1;
+  padding-top: 5px;
+  padding-bottom: 4px;
+}
+
+
+.govuk-accordion__section {
+    border-bottom: 1px solid #ccc; /* Adjust color and thickness as desired */
+}
+
+.govuk-accordion {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.govuk-accordion__section {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* Remove padding from the 'Show All Sections' button */
+.show-all-sections-button {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+
+
+
+
 </style>
 
 
@@ -325,42 +395,97 @@ a:link, .govuk-link:link {
         </aside>
       </div>
   </div>
-
-    <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
-        <!-- First Accordion Section -->
-        <div class="govuk-accordion__section">
-            <div class="govuk-accordion__section-header">
+<div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+    <!-- First Accordion Section -->
+    <div class="govuk-accordion__section">
+        <!-- Header Row -->
+        <div class="govuk-accordion__section-header govuk-grid-row">
+            <!-- Two-Thirds Column for Heading -->
+            <div class="govuk-grid-column-two-thirds">
                 <h2 class="govuk-accordion__section-heading">
                     <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
                         Scenario 1
                     </span>
                 </h2>
             </div>
-            <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
-                <p class="govuk-body">This is the content for Writing well for the web.</p>
-            </div>
-        </div>
-
-        <!-- Second Accordion Section -->
-        <div class="govuk-accordion__section">
-            <div class="govuk-accordion__section-header govuk-grid-row">
-                <div class="govuk-grid-column-three-quarters">
-                    <h2 class="govuk-accordion__section-heading">
-                        <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
-                            Scenario 2
-                        </span>
-                    </h2>
-                </div>
-                <div class="govuk-grid-column-one-quarter">
-                    <strong class="govuk-accordion__status">Status</strong>
+            <!-- One-Third Column for Status -->
+            <div class="govuk-grid-column-one-third" style="display: flex; align-items: center;">
+                <strong class="govuk-tag-black" style="margin-right: 10px;">Low Confidence</strong>
+                <div class="low-confidence">
+                    <!-- SVG for Low Confidence -->
+                    <svg width="18" height="18" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="40" stroke="black" stroke-width="1" fill="white" />
+                        <path d="M50 50 L50 10 A40 40 0 0 1 90 50 L50 50" stroke="black" stroke-linecap="round" stroke-width="1" fill="black" />
+                        <circle cx="50" cy="50" r="37" stroke="black" stroke-width="6" fill="transparent" />
+                        <circle cx="50" cy="50" r="34" stroke="white" stroke-width="6" fill="transparent" />
+                    </svg>
                 </div>
             </div>
-            <div id="accordion-default-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-2">
-                <p class="govuk-body">This is the content for Writing well for specialists.</p>
+        </div>
+        <!-- Content -->
+        <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
+            <p class="govuk-body">This is the content for Writing well for the web.</p>
+        </div>
+    </div>
+
+    <!-- Second Accordion Section -->
+    <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                <h2 class="govuk-accordion__section-heading">
+                    <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
+                        Scenario 2
+                    </span>
+                </h2>
+            </div>
+            <div class="govuk-grid-column-one-third" style="display: flex; align-items: center;">
+                <strong class="govuk-tag-black" style="margin-right: 10px;">High Confidence</strong>
+                <div class="high-confidence">
+                    <!-- SVG for High Confidence -->
+                    <svg width="18" height="18" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="40" stroke="black" stroke-width="1" fill="black" />
+                        <circle cx="50" cy="50" r="37" stroke="black" stroke-width="6" fill="transparent" />
+                        <circle cx="50" cy="50" r="34" stroke="white" stroke-width="6" fill="transparent" />
+                    </svg>
+                </div>
             </div>
         </div>
+        <div id="accordion-default-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-2">
+            <p class="govuk-body">This is the content for Writing well for specialists.</p>
+        </div>
+    </div>
 
-        <!-- Add more accordion sections here -->
+    <!-- Third Accordion Section -->
+    <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                <h2 class="govuk-accordion__section-heading">
+                    <span class="govuk-accordion__section-button" id="accordion-default-heading-3">
+                        Scenario 3
+                    </span>
+                </h2>
+            </div>
+            <div class="govuk-grid-column-one-third" style="display: flex; align-items: center;">
+                <strong class="govuk-tag-black" style="margin-right: 10px;">Medium Confidence</strong>
+                <div class="medium-confidence">
+                    <!-- SVG for Medium Confidence -->
+                    <svg width="18" height="18" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="40" stroke="black" stroke-width="1" fill="white" />
+                        <path d="M50 50 L50 10 A40 40 0 0 1 50 90 L50 50" stroke="black" stroke-linecap="round" stroke-width="1" fill="black" />
+                        <circle cx="50" cy="50" r="37" stroke="black" stroke-width="6" fill="transparent" />
+                        <circle cx="50" cy="50" r="34" stroke="white" stroke-width="6" fill="transparent" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
+            <p class="govuk-body">This is the content for Writing well for general audiences.</p>
+        </div>
+    </div>
+
+    <!-- Add more accordion sections here -->
+</div>
+
     </div>
 
 
