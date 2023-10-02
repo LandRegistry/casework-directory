@@ -6,40 +6,48 @@
 
 {% block content %}
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
+    console.log("DOMContentLoaded event fired!");
+
     let links = document.querySelectorAll('.app-navigation__link');
     links.forEach(link => {
-      if (window.location.href.includes(link.getAttribute('href'))) {
-        link.parentNode.classList.add('app-navigation__list-item--current');
-      }
+        let href = link.getAttribute('href');
+        let location = window.location.href;
+
+        if ((location.endsWith(href) || location.includes(href)) && href !== '/') {
+            link.parentNode.classList.add('app-navigation__list-item--current');
+            console.log(`Added current class to: ${href}`);
+        }
+
+        // For the index page
+        if (href === './' && (location.endsWith('index.html') || location.endsWith('/'))) {
+            link.parentNode.classList.add('app-navigation__list-item--current');
+            console.log(`Added current class to: ${href}`);
+        }
     });
-    });
-   document.addEventListener("DOMContentLoaded", function() {
-      const parentToggles = document.querySelectorAll('.parent-toggle');
-      parentToggles.forEach(toggle => {
+
+    const parentToggles = document.querySelectorAll('.parent-toggle');
+    parentToggles.forEach(toggle => {
         toggle.addEventListener('click', function(e) {
-          e.preventDefault();
-          const sectionId = this.getAttribute('data-toggle');
-          const content = document.getElementById(sectionId);
-          if (content) {
-            content.classList.toggle('show');
-          }
+            e.preventDefault();
+            const sectionId = this.getAttribute('data-toggle');
+            const content = document.getElementById(sectionId);
+            if (content) content.classList.toggle('show');
 
-          // Find the parent li of the clicked toggle and toggle the class on it
-          const parentLi = toggle.closest('.item');
-          if (parentLi) {
-            parentLi.classList.toggle('app-subnav__section-item--current');
-          }
+            const parentLi = toggle.closest('.item');
+            if (parentLi) parentLi.classList.toggle('app-subnav__section-item--current');
         });
-      });
+        });
     });
 
+    // This is your existing event listener for the back-to-top link.
     document.addEventListener('DOMContentLoaded', function () {
-      document.querySelector('.app-back-to-top__link').addEventListener('click', function (e) {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
+        document.querySelector('.app-back-to-top__link').addEventListener('click', function (e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     });
+
 </script>
 <style>
 body, h1, h2, h3, h4, h5, h6, p, a {
@@ -197,10 +205,9 @@ ol, li {
             <div class="app-navigation-grid">
                 <ul class="app-navigation__list app-width-container">
                     <li class="app-navigation__list-item">
-                        <a class="govuk-nav-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/index">
-                            Home
-                        </a>
-                    </li>
+                    <a class="govuk-nav-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="./">
+                        Home
+                    </a>
                     <li class="app-navigation__list-item">
                         <a class="govuk-nav-link govuk-link--no-visited-state govuk-link--no-underline app-navigation__link js-app-navigation__link" href="/layouts/workflow">
                             Workflow
