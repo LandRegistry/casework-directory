@@ -54,12 +54,12 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 
 
 <style>
-body, h1, h2, h3, h4, h5, h6, p, a {
+.body, h1, h2, h3, h4, h5, h6, p, a {
     font-family: 'Arial', sans-serif !important;
 }
-body, p, a, govuk-back-link  {
+.a, govuk-back-link  {
     font-family: 'Arial', sans-serif !important;
-    color: #00703C;
+    co
 }
 .app-navigation {
     display: flex;
@@ -422,16 +422,17 @@ a:link, .govuk-link:link {
                 </h2>
             </div>
             <div class="govuk-grid-column-one-third" style="display: flex; align-items: center;">
-                <strong class="govuk-tag-black" style="margin-right: 10px;">High Confidence</strong>
-                <div class="high-confidence">
-                    <!-- SVG for High Confidence -->
-                    <svg width="18" height="18" viewBox="0 0 100 100">
-                        <circle cx="50" cy="50" r="40" stroke="black" stroke-width="1" fill="black" />
-                        <circle cx="50" cy="50" r="37" stroke="black" stroke-width="6" fill="transparent" />
-                        <circle cx="50" cy="50" r="34" stroke="white" stroke-width="6" fill="transparent" />
-                    </svg>
-                </div>
-            </div>
+              <strong class="govuk-tag-black" style="margin-right: 10px;">Medium Confidence</strong>
+              <div class="medium-confidence">
+                  <!-- SVG for Medium Confidence -->
+                  <svg width="18" height="18" viewBox="0 0 100 100">
+                      <circle cx="50" cy="50" r="40" stroke="black" stroke-width="1" fill="white" />
+                      <path d="M50 50 L50 10 A40 40 0 0 1 50 90 L50 50" stroke="black" stroke-linecap="round" stroke-width="1" fill="black" />
+                      <circle cx="50" cy="50" r="37" stroke="black" stroke-width="6" fill="transparent" />
+                      <circle cx="50" cy="50" r="34" stroke="white" stroke-width="6" fill="transparent" />
+                  </svg>
+              </div>
+          </div>
         </div>
         <div id="accordion-default-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-2">
             <p class="govuk-body">This is the content for Writing well for specialists.</p>
@@ -449,17 +450,17 @@ a:link, .govuk-link:link {
                 </h2>
             </div>
             <div class="govuk-grid-column-one-third" style="display: flex; align-items: center;">
-                <strong class="govuk-tag-black" style="margin-right: 10px;">Medium Confidence</strong>
-                <div class="medium-confidence">
-                    <!-- SVG for Medium Confidence -->
+                <strong class="govuk-tag-black" style="margin-right: 10px;">High Confidence</strong>
+                <div class="high-confidence">
+                    <!-- SVG for High Confidence -->
                     <svg width="18" height="18" viewBox="0 0 100 100">
-                        <circle cx="50" cy="50" r="40" stroke="black" stroke-width="1" fill="white" />
-                        <path d="M50 50 L50 10 A40 40 0 0 1 50 90 L50 50" stroke="black" stroke-linecap="round" stroke-width="1" fill="black" />
+                        <circle cx="50" cy="50" r="40" stroke="black" stroke-width="1" fill="black" />
                         <circle cx="50" cy="50" r="37" stroke="black" stroke-width="6" fill="transparent" />
                         <circle cx="50" cy="50" r="34" stroke="white" stroke-width="6" fill="transparent" />
                     </svg>
                 </div>
             </div>
+
         </div>
         <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
             <p class="govuk-body">This is the content for Writing well for general audiences.</p>
