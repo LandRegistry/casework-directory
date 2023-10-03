@@ -1,7 +1,7 @@
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
 
 {% block pageTitle %}
-  Casework directory – {{ makeThing }} – HMLR
+  Casework directory – {{ ApplicationProcessing }} – HMLR
 {% endblock %}
 
 {% block content %}
@@ -50,6 +50,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </script>
 <style>
+.govuk-header__logotype-crown {
+    display: none;
+}
 .body, h1, h2, h3, h4, h5, h6, p, a,.govuk-list, .govuk-list--bullet, li, .govuk-list--number {
     font-family: 'Arial', sans-serif !important;
 }
