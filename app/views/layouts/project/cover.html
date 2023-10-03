@@ -283,8 +283,11 @@ a:link, .govuk-link:link {
     font-family: "GDS Transport", arial, sans-serif;
    line-height: 1.5em;
 }
-.govuk-grid-column-two-thirds,
-.govuk-grid-column-one-third {
+.govuk-grid-column-one-quarter {
+    border-top: 1px solid #b1b4b6;
+}
+
+.govuk-grid-column-three-quarters {
     border-top: 1px solid #b1b4b6;
 }
 
@@ -293,13 +296,13 @@ a:link, .govuk-link:link {
 
 }
 .govuk-body-s {
-    padding-top: 10px;
+    {# padding-top: 10px; #}
 }
 
 
 .app-related-items {
   border-top: none;
-  padding-top: 10px;
+  {# padding-top: 10px; #}
 }
 .govuk-accordion__section-button, .govuk-accordion__section-heading, govuk-accordion__section-heading, accordion-default-heading-1,  accordion-default-heading-2, accordion-default-heading-3 {
   border-top: none;
@@ -310,7 +313,7 @@ a:link, .govuk-link:link {
 
 .govuk-accordion__section-content{
   padding-bottom: none;
-  padding-bottom: top;
+  padding-bottom: none;
 }
 .govuk-tag-black {
   color: #0b0c0c;
@@ -389,7 +392,7 @@ a:link, .govuk-link:link {
         <!-- Header Row -->
         <div class="govuk-accordion__section-header govuk-grid-row">
             <!-- Two-Thirds Column for Heading -->
-            <div class="govuk-grid-column-two-thirds">
+            <div class="govuk-grid-column-three-quarters">
                 <h2 class="govuk-accordion__section-heading">
                     <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
                         Scenario 1
@@ -397,7 +400,7 @@ a:link, .govuk-link:link {
                 </h2>
             </div>
             <!-- One-Third Column for Status -->
-            <div class="govuk-grid-column-one-third" style="display: flex; align-items: center;">
+            <div class="govuk-grid-column-one-quarter" style="display: flex; align-items: center;">
                 <strong class="govuk-tag-black" style="margin-right: 10px;">Low Confidence</strong>
                 <div class="low-confidence">
                     <!-- SVG for Low Confidence -->
@@ -419,14 +422,14 @@ a:link, .govuk-link:link {
     <!-- Second Accordion Section -->
     <div class="govuk-accordion__section">
         <div class="govuk-accordion__section-header govuk-grid-row">
-            <div class="govuk-grid-column-two-thirds">
+            <div class="govuk-grid-column-three-quarters">
                 <h2 class="govuk-accordion__section-heading">
                     <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
                         Scenario 2
                     </span>
                 </h2>
             </div>
-            <div class="govuk-grid-column-one-third" style="display: flex; align-items: center;">
+            <div class="govuk-grid-column-one-quarter" style="display: flex; align-items: center;">
               <strong class="govuk-tag-black" style="margin-right: 10px;">Medium Confidence</strong>
               <div class="medium-confidence">
                   <!-- SVG for Medium Confidence -->
@@ -447,14 +450,14 @@ a:link, .govuk-link:link {
     <!-- Third Accordion Section -->
     <div class="govuk-accordion__section">
         <div class="govuk-accordion__section-header govuk-grid-row">
-            <div class="govuk-grid-column-two-thirds">
+            <div class="govuk-grid-column-three-quarters">
                 <h2 class="govuk-accordion__section-heading">
                     <span class="govuk-accordion__section-button" id="accordion-default-heading-3">
                         Scenario 3
                     </span>
                 </h2>
             </div>
-            <div class="govuk-grid-column-one-third" style="display: flex; align-items: center;">
+            <div class="govuk-grid-column-one-quarter" style="display: flex; align-items: center;">
                 <strong class="govuk-tag-black" style="margin-right: 10px;">High Confidence</strong>
                 <div class="high-confidence">
                     <!-- SVG for High Confidence -->
