@@ -1,63 +1,58 @@
-{# Guide to Trello CMS Integration with Webpage
+{#
+For guidance on how to use layouts see:
+https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
+#}
 
+{#
+Guide to Trello CMS Integration with Webpage
 You can find out more at : https://trello.com/b/VSZOgekY/ap-research-cms
+#}
 
+{#
 Introduction:
 This guide explains how the website uses Trello cards as a makeshift Content Management System (CMS). The content of Trello cards dynamically updates various parts of the webpage.
+#}
+
+{#
 1. How the Integration Works:
+Trello Markup: Each Trello card's content corresponds to HTML elements on the webpage, grouped as blocks (like "block1").
+Example Markup:
+    <h1>: Main Title
+    <p>: Description or information
+    <h2>: Subtitles or headings
+    <a>: Links
+    <li>: List items
+#}
 
-    Trello Markup: Each Trello card's content corresponds to HTML elements on the webpage, grouped as blocks (like #block1).
+{#
+HTML Setup: Multiple div elements in the HTML correspond to Trello cards. The connection is established through an attribute, data-content-block.
+<div data-content-block="block1"> ... </div>
+#}
 
-    Example Markup:
-        <h1>: Main Title
-        <p>: Description or information
-        <h2>: Subtitles or headings
-        <a>: Links
-        <li>: List items
+{# JavaScript Integration:
+    - Highlights the navigation based on URL.
+    - Adds toggle functionality for expanding/collapsing sections.
+    - Smoothly scrolls back to the top.
+    - Fetches and integrates data from Trello to the webpage.
+    - Fetching Data: JavaScript fetches cards from a Trello board and checks each card's name for matching block patterns like "block1".
+      If matched, the webpage updates using the card's description.
+    - Parsing Data: The function, parseCardContent, breaks down a card's description to map to various HTML elements (<h1>, <p>, etc.).
+    - Content Update: The updateWebpageContent function is tasked with the final content display on the webpage based on the parsed Trello data.
+#}
 
-    HTML Setup: Multiple div elements in the HTML correspond to Trello cards. The connection is established through an attribute, data-content-block.
-    <div data-content-block="block1"> ... </div>
-
-    JavaScript Integration:
-
-        Highlights the navigation based on URL.
-
-        Adds toggle functionality for expanding/collapsing sections.
-
-        Smoothly scrolls back to the top.
-
-        Fetches and integrates data from Trello to the webpage.
-
-            Fetching Data: JavaScript fetches cards from a Trello board and checks each card's name for matching block patterns like #block1.
-            If matched, the webpage updates using the card's description.
-
-            Parsing Data: The function, parseCardContent, breaks down a card's description to map to various HTML elements (<h1>, <p>, etc.).
-
-            Content Update: The updateWebpageContent function is tasked with the final content display on the webpage based on the parsed Trello data.
-
-2. Instructions to Modify the Integration:
-
-    Pattern Modification: To use a different matching pattern from #block1, adjust this regex line: const blockMatch = card.name.match(/#(block\d+)/).
-
-    Content Types Changes: To add or remove content types from Trello (e.g., <h4>), adjust the parseCardContent function to extract the new type and modify the updateWebpageContent function accordingly.
-
-    HTML-Trello Association: For a Trello card to impact a different block, rename the card in Trello (e.g., from #block1 to #block2).
-    Ensure there's a corresponding div in the HTML with the matching data-content-block attribute.
-
-    Trello Modifications: If you alter Trello by adding/removing cards, or changing descriptions, the webpage will automatically reflect these upon next load due to the live JavaScript integration.
- #}
-
-
-<div class="govuk-grid-row" data-content-block="block1">
-
+{# 2. Instructions to Modify the Integration:
+    - Pattern Modification: To use a different matching pattern from "block1", adjust this regex line: const blockMatch = card.name.match(/#(block\d+)/).
+    - Content Types Changes: To add or remove content types from Trello (e.g., <h4>), adjust the parseCardContent function to extract the new type and modify the updateWebpageContent function accordingly.
+    - HTML-Trello Association: For a Trello card to impact a different block, rename the card in Trello (e.g., from "block1" to "block2"). Ensure there's a corresponding div in the HTML with the matching data-content-block attribute.
+    - Trello Modifications: If you alter Trello by adding/removing cards, or changing descriptions, the webpage will automatically reflect these upon next load due to the live JavaScript integration.
+#}
 
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %} {# or extend another layout if needed #}
 {% block content %}
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
 
-        // Navigation Highlight based on Current URL
+
         let navLinks = document.querySelectorAll('#app-navigation .app-navigation__link');
 
         navLinks.forEach(link => {
@@ -66,7 +61,7 @@ This guide explains how the website uses Trello cards as a makeshift Content Man
             }
         });
 
-        // Accordion Toggle
+
         let accordionToggles = document.querySelectorAll('#accordion-sections .Parent .Govlink-bold');
 
         accordionToggles.forEach(toggle => {
@@ -90,49 +85,49 @@ This guide explains how the website uses Trello cards as a makeshift Content Man
         }
     });
 
-const apiKey = 'c910dd122b6d0beef6c24652650da93c';
-const apiToken = 'ATTA3806a236f99faad65e116234aedc7e03e87552d1b42a0663aae3696ffaf8c0d62998B78C';
-const boardId = 'VSZOgekY';
+    const apiKey = 'c910dd122b6d0beef6c24652650da93c';
+    const apiToken = 'ATTA3806a236f99faad65e116234aedc7e03e87552d1b42a0663aae3696ffaf8c0d62998B78C';
+    const boardId = 'VSZOgekY';
 
-fetch(`https://api.trello.com/1/boards/${boardId}/lists?key=${apiKey}&token=${apiToken}`)
-    .then(response => response.json())
-    .then(lists => {
-        lists.forEach(list => {
-            fetch(`https://api.trello.com/1/lists/${list.id}/cards?key=${apiKey}&token=${apiToken}`)
-                .then(response => response.json())
-                .then(cards => {
-                    cards.forEach(card => {
-                        const blockMatch = card.name.match(/#(block\d+)/);
-                        if (blockMatch) {
-                            const parsedContent = parseCardContent(card.desc);
-                            updateWebpageContent(parsedContent, blockMatch[1]);
-                        }
+    fetch(`https://api.trello.com/1/boards/${boardId}/lists?key=${apiKey}&token=${apiToken}`)
+        .then(response => response.json())
+        .then(lists => {
+            lists.forEach(list => {
+                fetch(`https://api.trello.com/1/lists/${list.id}/cards?key=${apiKey}&token=${apiToken}`)
+                    .then(response => response.json())
+                    .then(cards => {
+                        cards.forEach(card => {
+                            const blockMatch = card.name.match(/#(block\d+)/);
+                            if (blockMatch) {
+                                const parsedContent = parseCardContent(card.desc);
+                                updateWebpageContent(parsedContent, blockMatch[1]);
+                            }
+                        });
                     });
-                });
+            });
         });
-    });
-function parseCardContent(content) {
-    //... (This part remains unchanged from before)
-}
+    function parseCardContent(content) {
 
-function updateWebpageContent(parsedContent, block) {
-    const section = document.querySelector(`[data-content-block="${block}"]`);
-    if (!section) return;
-
-    const updateElements = (tag, query) => {
-        const elements = section.querySelectorAll(query);
-        parsedContent[tag]?.forEach((text, index) => {
-            if (elements[index]) elements[index].textContent = text;
-        });
     }
 
-    if (parsedContent['<h1>']) updateElements('<h1>', 'h1');
-    if (parsedContent['<h2>']) updateElements('<h2>', '.govuk-heading-m');
-    if (parsedContent['<h3>']) updateElements('<h3>', '.govuk-heading-s');
-    if (parsedContent['<p>']) updateElements('<p>', '.govuk-body p');
-    if (parsedContent['<a>']) updateElements('<a>', '.govuk-link');
-    if (parsedContent['<li>']) updateElements('<li>', '.govuk-list--bullet li');
-}
+    function updateWebpageContent(parsedContent, block) {
+        const section = document.querySelector(`[data-content-block="${block}"]`);
+        if (!section) return;
+
+        const updateElements = (tag, query) => {
+            const elements = section.querySelectorAll(query);
+            parsedContent[tag]?.forEach((text, index) => {
+                if (elements[index]) elements[index].textContent = text;
+            });
+        }
+
+        if (parsedContent['<h1>']) updateElements('<h1>', 'h1');
+        if (parsedContent['<h2>']) updateElements('<h2>', '.govuk-heading-m');
+        if (parsedContent['<h3>']) updateElements('<h3>', '.govuk-heading-s');
+        if (parsedContent['<p>']) updateElements('<p>', '.govuk-body p');
+        if (parsedContent['<a>']) updateElements('<a>', '.govuk-link');
+        if (parsedContent['<li>']) updateElements('<li>', '.govuk-list--bullet li');
+    }
 
 
 </script>
@@ -363,7 +358,6 @@ a:link, .govuk-link:link {
 }
 .govuk-grid-column-two-thirds,
 .govuk-grid-column-one-third {
-    {# border-top: 1px solid grey; #}
     padding-top: 50px;
 }
 
@@ -447,7 +441,7 @@ a:link, .govuk-link:link {
                 <li class="Parent">
                    &mdash; <a class="Govlink-bold" data-toggle="application-assessment">Application Assessment</a>
                     <ol class="toggle-content" id="application-assessment">
-                        <li><a class="Gov-link-reg" href="#selecting-next-priority-application">Selecting the Next Priority</a></li>
+                        <li><a class="Gov-link-reg" href="#Content-management-trello">Content Management using Trello</a></li>
                         <li><a class="Gov-link-reg" href="#reviewing-and-assessing-application">Reviewing and Assessing</a></li>
                         <li><a class="Gov-link-reg" href="#evaluating-in-progress-vs-new">Evaluating In-Progress vs. New Applications</a></li>
                         <li><a class="Gov-link-reg" href="#organizing-application-documents-for-review">Organizing Documents</a></li>
@@ -656,11 +650,11 @@ a:link, .govuk-link:link {
             <a href="layouts/research.html" target="_blank" class="tiny-link">Example link</a>
         </div>
     </div>
-{# <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible"> #}
+<hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
 
-{# <div class="govuk-grid-row" data-content-block="block5">
-    <!-- The `data-content-block="block5"` attribute above is crucial. It corresponds to a Trello card named `#block5`. The number can be changed (e.g., `#block6`, `#block7`...), but ensure that the associated Trello card uses the same identifier.
-    The JavaScript earlier in the page detects this and populates the content, as long as the Trello markup is correct. -->
+<div id="Content-management-trello" class="govuk-grid-row" data-content-block="block5">
+     {# The `data-content-block="block5"` attribute above is crucial. It corresponds to a Trello card named `block5`. The number can be changed (e.g., `block6`, `block7`...), but ensure that the associated Trello card uses the same identifier.
+    The JavaScript earlier in the page detects this and populates the content, as long as the Trello markup is correct.  #}
 
     <!-- Title Section -->
     <div class="govuk-grid-column-two-thirds">
@@ -682,18 +676,15 @@ a:link, .govuk-link:link {
     </div>
 
     </div>
-    <!-- Additional Links Section -->
     <div class="govuk-grid-column-one-third" data-content-block="block6">
-        <!-- The `data-content-block="block6"` attribute above is also important and corresponds to another Trello card. Update its content flexibly from Trello using the correct markup. -->
+        <!-- The data-content-block="block6" attribute above is also important and corresponds to another Trello card. Update its content flexibly from Trello using the correct markup. -->
 
         <h4 class="tiny-link">Important Links</h4>
-        <a href="https://landregistryuk.sharepoint.com/sites/Designandcontentdesign" target="_blank" class="tiny-link">Trello CMS Documentation</a>
-        <br>
-        <a href="layouts/research.html" target="_blank" class="tiny-link">Trello Integration Guide</a>
+        <a href="https://trello.com/b/VSZOgekY/ap-research-cms" target="_blank" class="tiny-link">Trello CMS Documentation</a>
     </div>
 </div>
 <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
-#}
+
 
 <div class="app-back-to-top" data-module="app-back-to-top">
     <p class="govuk-body">
