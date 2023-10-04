@@ -1,7 +1,52 @@
-{#
-For guidance on how to use layouts see:
-https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
-#}
+{# Guide to Trello CMS Integration with Webpage
+
+Introduction:
+This guide explains how the website uses Trello cards as a makeshift Content Management System (CMS). The content of Trello cards dynamically updates various parts of the webpage.
+1. How the Integration Works:
+
+    Trello Markup: Each Trello card's content corresponds to HTML elements on the webpage, grouped as blocks (like #block1).
+
+    Example Markup:
+        <h1>: Main Title
+        <p>: Description or information
+        <h2>: Subtitles or headings
+        <a>: Links
+        <li>: List items
+
+    HTML Setup: Multiple div elements in the HTML correspond to Trello cards. The connection is established through an attribute, data-content-block.
+    <div data-content-block="block1"> ... </div>
+
+    avaScript Integration:
+
+        Highlights the navigation based on URL.
+
+        Adds toggle functionality for expanding/collapsing sections.
+
+        Smoothly scrolls back to the top.
+
+        Fetches and integrates data from Trello to the webpage.
+
+            Fetching Data: JavaScript fetches cards from a Trello board and checks each card's name for matching block patterns like #block1. If matched, the webpage updates using the card's description.
+
+            Parsing Data: The function, parseCardContent, breaks down a card's description to map to various HTML elements (<h1>, <p>, etc.).
+
+            Content Update: The updateWebpageContent function is tasked with the final content display on the webpage based on the parsed Trello data.
+
+2. Instructions to Modify the Integration:
+
+    Pattern Modification: To use a different matching pattern from #block1, adjust this regex line: const blockMatch = card.name.match(/#(block\d+)/).
+
+    Content Types Changes: To add or remove content types from Trello (e.g., <h4>), adjust the parseCardContent function to extract the new type and modify the updateWebpageContent function accordingly.
+
+    HTML-Trello Association: For a Trello card to impact a different block, rename the card in Trello (e.g., from #block1 to #block2).
+    Ensure there's a corresponding div in the HTML with the matching data-content-block attribute.
+
+    Trello Modifications: If you alter Trello by adding/removing cards, or changing descriptions, the webpage will automatically reflect these upon next load due to the live JavaScript integration.
+ #}
+
+
+<div class="govuk-grid-row" data-content-block="block1">
+
 
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %} {# or extend another layout if needed #}
 {% block content %}
@@ -63,30 +108,27 @@ fetch(`https://api.trello.com/1/boards/${boardId}/lists?key=${apiKey}&token=${ap
                 });
         });
     });
-
 function parseCardContent(content) {
     //... (This part remains unchanged from before)
 }
 
 function updateWebpageContent(parsedContent, block) {
-    if (['block1', 'block2'].includes(block)) {
-        const section = document.querySelector(`[data-content-block="${block}"]`);
-        if (!section) return;
+    const section = document.querySelector(`[data-content-block="${block}"]`);
+    if (!section) return;
 
-        const updateElements = (tag, query) => {
-            const elements = section.querySelectorAll(query);
-            parsedContent[tag]?.forEach((text, index) => {
-                if (elements[index]) elements[index].textContent = text;
-            });
-        }
-
-        if (parsedContent['<h1>']) updateElements('<h1>', 'h1');
-        if (parsedContent['<h2>']) updateElements('<h2>', '.govuk-heading-m');
-        if (parsedContent['<h3>']) updateElements('<h3>', '.govuk-heading-s');
-        if (parsedContent['<p>']) updateElements('<p>', '.govuk-body p');
-        if (parsedContent['<a>']) updateElements('<a>', '.govuk-link');
-        if (parsedContent['<li>']) updateElements('<li>', '.govuk-list--bullet li');
+    const updateElements = (tag, query) => {
+        const elements = section.querySelectorAll(query);
+        parsedContent[tag]?.forEach((text, index) => {
+            if (elements[index]) elements[index].textContent = text;
+        });
     }
+
+    if (parsedContent['<h1>']) updateElements('<h1>', 'h1');
+    if (parsedContent['<h2>']) updateElements('<h2>', '.govuk-heading-m');
+    if (parsedContent['<h3>']) updateElements('<h3>', '.govuk-heading-s');
+    if (parsedContent['<p>']) updateElements('<p>', '.govuk-body p');
+    if (parsedContent['<a>']) updateElements('<a>', '.govuk-link');
+    if (parsedContent['<li>']) updateElements('<li>', '.govuk-list--bullet li');
 }
 
 
