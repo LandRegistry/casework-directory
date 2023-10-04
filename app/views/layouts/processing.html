@@ -6,6 +6,7 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %} {# or extend another layout if needed #}
 {% block content %}
 <script>
+   document.querySelector('.govuk-header__logotype-text').innerHTML = 'HMLR';
     document.addEventListener('DOMContentLoaded', function () {
     let links = document.querySelectorAll('.app-navigation__link');
     links.forEach(link => {
@@ -198,6 +199,7 @@ ol, li {
   color: #00703C;
 }
 </style>
+
 <main class="govuk-main-wrapper">
       <div class="govuk-width-container">
        <div class="govuk-width-container">

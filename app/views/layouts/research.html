@@ -50,6 +50,8 @@ HTML Setup: Multiple div elements in the HTML correspond to Trello cards. The co
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %} {# or extend another layout if needed #}
 {% block content %}
 <script>
+    document.querySelector('.govuk-header__logotype-text').innerHTML = 'HMLR';
+
     document.addEventListener('DOMContentLoaded', function () {
 
 
@@ -599,7 +601,7 @@ a:link, .govuk-link:link {
             <h2 class="govuk-heading-m">Additional Resources</h2>
             <p>Explore various resources to dive deeper into content design and formatting concepts.</p>
             <ul class="govuk-list govuk-list--bullet">
-                <li><a href="#" class="govuk-link">>Example link</a></li>
+                <li><a href="#" class="govuk-link">Example link</a></li>
                 <li><a href="#" class="govuk-link">Example link</a></li>
                 <li><a href="#" class="govuk-link">Example link</a></li>
             </ul>
