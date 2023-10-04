@@ -1,5 +1,7 @@
 {# Guide to Trello CMS Integration with Webpage
 
+You can find out more at : https://trello.com/b/VSZOgekY/ap-research-cms
+
 Introduction:
 This guide explains how the website uses Trello cards as a makeshift Content Management System (CMS). The content of Trello cards dynamically updates various parts of the webpage.
 1. How the Integration Works:
@@ -26,7 +28,8 @@ This guide explains how the website uses Trello cards as a makeshift Content Man
 
         Fetches and integrates data from Trello to the webpage.
 
-            Fetching Data: JavaScript fetches cards from a Trello board and checks each card's name for matching block patterns like #block1. If matched, the webpage updates using the card's description.
+            Fetching Data: JavaScript fetches cards from a Trello board and checks each card's name for matching block patterns like #block1.
+            If matched, the webpage updates using the card's description.
 
             Parsing Data: The function, parseCardContent, breaks down a card's description to map to various HTML elements (<h1>, <p>, etc.).
 
