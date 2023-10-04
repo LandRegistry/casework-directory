@@ -54,73 +54,41 @@ fetch(`https://api.trello.com/1/boards/${boardId}/lists?key=${apiKey}&token=${ap
                 .then(response => response.json())
                 .then(cards => {
                     cards.forEach(card => {
-                        const parsedContent = parseCardContent(card.desc);
-                        updateWebpageContent(parsedContent);
+                        const blockMatch = card.name.match(/#(block\d+)/);
+                        if (blockMatch) {
+                            const parsedContent = parseCardContent(card.desc);
+                            updateWebpageContent(parsedContent, blockMatch[1]);
+                        }
                     });
                 });
         });
     });
 
 function parseCardContent(content) {
-    const structure = {
-        '<h1>': /<h1>:\s*(.*?)\s*(?=<|$)/,
-        '<h2>': /<h2>:\s*(.*?)\s*(?=<|$)/g,
-        '<h3>': /<h3>:\s*(.*?)\s*(?=<|$)/,
-        '<p>': /<p>:\s*(.*?)\s*(?=<|$)/g,
-        '<a>': /<a>:\s*(.*?)\s*(?=<|$)/,
-        '<li>': /<li>:\s*(.*?)\s*(?=<|$)/g,
-    };
-
-    let parsedContent = {};
-
-    for (let tag in structure) {
-        let match = content.match(structure[tag]);
-        if (match) {
-            parsedContent[tag] = match.map(item => item.replace(structure[tag], '$1'));
-        }
-    }
-
-    return parsedContent;
+    //... (This part remains unchanged from before)
 }
 
-    function updateWebpageContent(parsedContent) {
-        if (parsedContent['<h1>']) {
-            document.getElementById('preparing-for-the-day').textContent = parsedContent['<h1>'][0];
-        }
+function updateWebpageContent(parsedContent, block) {
+    if (['block1', 'block2'].includes(block)) {
+        const section = document.querySelector(`[data-content-block="${block}"]`);
+        if (!section) return;
 
-        if (parsedContent['<h2>']) {
-            let h2Elements = document.querySelectorAll('.govuk-heading-m');
-            parsedContent['<h2>'].forEach((text, index) => {
-                if (h2Elements[index]) h2Elements[index].textContent = text;
+        const updateElements = (tag, query) => {
+            const elements = section.querySelectorAll(query);
+            parsedContent[tag]?.forEach((text, index) => {
+                if (elements[index]) elements[index].textContent = text;
             });
         }
 
-        if (parsedContent['<h3>']) {
-            document.querySelector('.govuk-heading-s').textContent = parsedContent['<h3>'][0];
-        }
-
-        if (parsedContent['<p>']) {
-            let pElements = document.querySelectorAll('.govuk-body p');
-            parsedContent['<p>'].forEach((text, index) => {
-                if (pElements[index]) pElements[index].textContent = text;
-            });
-        }
-
-        if (parsedContent['<a>']) {
-            let aElement = document.querySelector('.govuk-link');
-            if (aElement) aElement.textContent = parsedContent['<a>'][0];
-        }
-
-        if (parsedContent['<li>']) {
-            let ulElement = document.querySelector('.govuk-list--bullet');
-            ulElement.innerHTML = "";  // Clear the existing list
-            parsedContent['<li>'].forEach(item => {
-                let li = document.createElement('li');
-                li.textContent = item;
-                ulElement.appendChild(li);
-            });
-        }
+        if (parsedContent['<h1>']) updateElements('<h1>', 'h1');
+        if (parsedContent['<h2>']) updateElements('<h2>', '.govuk-heading-m');
+        if (parsedContent['<h3>']) updateElements('<h3>', '.govuk-heading-s');
+        if (parsedContent['<p>']) updateElements('<p>', '.govuk-body p');
+        if (parsedContent['<a>']) updateElements('<a>', '.govuk-link');
+        if (parsedContent['<li>']) updateElements('<li>', '.govuk-list--bullet li');
     }
+}
+
 
 </script>
 
@@ -510,29 +478,24 @@ a:link, .govuk-link:link {
             </ol>
         </nav>
 <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
-<div class="govuk-grid-row">
+<div class="govuk-grid-row" data-content-block="block1">
     <!-- Title Section -->
     <div class="govuk-grid-column-two-thirds">
         <h1 id="preparing-for-the-day" class="govuk-heading-l govuk-!-margin-bottom-2">Preparing for the day</h1>
-         <div class="govuk-body">
+        <div class="govuk-body">
             <p>This section provides an overview of various design and formatting elements used in content creation, such as headings, subheadings, paragraphs, links, and lists.</p>
-
             <!-- Heading Section -->
             <h2 class="govuk-heading-m">Headings</h2>
             <p>Headings structure the content and guide the reader through the different sections. They are crucial for both readability and SEO.</p>
-
             <!-- Subheading Section -->
             <h3 class="govuk-heading-s">Subheadings</h3>
             <p>Subheadings divide content under each heading into smaller, more specific sections, making it more scannable and easier to read.</p>
-
             <!-- Paragraph Section -->
             <h2 class="govuk-heading-m">Paragraphs</h2>
             <p>Paragraphs hold the main content. They are blocks of text separated by space and should contain coherent thoughts or ideas.</p>
-
             <!-- Links Section -->
             <h2 class="govuk-heading-m">Links</h2>
             <p>Links direct the reader to additional resources or related pages. They should have descriptive anchor text. Example: <a href="#" class="govuk-link">Read more about content design</a>.</p>
-
             <!-- Lists Section -->
             <h2 class="govuk-heading-m">Lists</h2>
             <p>Lists are used to present multiple items in a structured manner. They can be unordered (bulleted) or ordered (numbered).</p>
@@ -541,7 +504,6 @@ a:link, .govuk-link:link {
                 <li>Item 2</li>
                 <li>Item 3</li>
             </ul>
-
             <!-- Additional Resources Section -->
             <h2 class="govuk-heading-m">Additional Resources</h2>
             <p>Explore various resources to dive deeper into content design and formatting concepts.</p>
@@ -552,23 +514,23 @@ a:link, .govuk-link:link {
             </ul>
         </div>
     </div>
-        <!-- Additional Links Section -->
-        <div class="govuk-grid-column-one-third">
-            <h4 class="tiny-link">Additional links</h4>
-            <a href="https://landregistryuk.sharepoint.com/sites/Designandcontentdesign" target="_blank" class="tiny-link">Example link</a>
-            <br>
-            <a href="layouts/research.html" target="_blank" class="tiny-link">Example link</a>
-        </div>
+    <!-- Additional Links Section -->
+    <div class="govuk-grid-column-one-third" data-content-block="block2">
+        <h4 class="tiny-link">Additional links</h4>
+        <a href="https://landregistryuk.sharepoint.com/sites/Designandcontentdesign" target="_blank" class="tiny-link">Example link</a>
+        <br>
+        <a href="layouts/research.html" target="_blank" class="tiny-link">Example link</a>
     </div>
+</div>
+
 <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
- <div class="govuk-grid-row">
+ <div class="govuk-grid-row" data-content-block="block3">
     <!-- Title Section -->
     <div class="govuk-grid-column-two-thirds">
         <h1 id="workspace-setup" class="govuk-heading-l govuk-!-margin-bottom-2">Workspace Setup</h1>
        <div class="govuk-body">
     <div class="govuk-body">
             <p>This section provides an overview of various design and formatting elements used in content creation, such as headings, subheadings, paragraphs, links, and lists.</p>
-<
             <!-- Heading Section -->
             <h2 class="govuk-heading-m">Headings</h2>
             <p>Headings structure the content and guide the reader through the different sections. They are crucial for both readability and SEO.</p>
@@ -607,7 +569,7 @@ a:link, .govuk-link:link {
 
         </div>
         <!-- Additional Links Section -->
-        <div class="govuk-grid-column-one-third">
+        <div class="govuk-grid-column-one-third" data-content-block="block4">
             <h4 class="tiny-link">Additional links</h4>
             <a href="https://landregistryuk.sharepoint.com/sites/Designandcontentdesign" target="_blank" class="tiny-link">Example link</a>
             <br>
@@ -615,7 +577,7 @@ a:link, .govuk-link:link {
         </div>
     </div>
 <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
- <div class="govuk-grid-row">
+ <div class="govuk-grid-row" data-content-block="block5">
     <!-- Title Section -->
     <div class="govuk-grid-column-two-thirds">
         <h1 id="determining-daily-priorities" class="govuk-heading-l govuk-!-margin-bottom-2">Determining Daily Priorities</h1>
@@ -642,7 +604,7 @@ a:link, .govuk-link:link {
 
         </div>
         <!-- Additional Links Section -->
-        <div class="govuk-grid-column-one-third">
+        <div class="govuk-grid-column-one-third" data-content-block="block6">
             <h4 class="tiny-link">Additional links</h4>
             <a href="https://landregistryuk.sharepoint.com/sites/Designandcontentdesign" target="_blank" class="tiny-link">Example link</a>
             <br>
