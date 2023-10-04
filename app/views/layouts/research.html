@@ -41,6 +41,87 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
             });
         }
     });
+
+const apiKey = 'c910dd122b6d0beef6c24652650da93c';
+const apiToken = 'ATTA3806a236f99faad65e116234aedc7e03e87552d1b42a0663aae3696ffaf8c0d62998B78C';
+const boardId = 'VSZOgekY';
+
+fetch(`https://api.trello.com/1/boards/${boardId}/lists?key=${apiKey}&token=${apiToken}`)
+    .then(response => response.json())
+    .then(lists => {
+        lists.forEach(list => {
+            fetch(`https://api.trello.com/1/lists/${list.id}/cards?key=${apiKey}&token=${apiToken}`)
+                .then(response => response.json())
+                .then(cards => {
+                    cards.forEach(card => {
+                        const parsedContent = parseCardContent(card.desc);
+                        updateWebpageContent(parsedContent);
+                    });
+                });
+        });
+    });
+
+function parseCardContent(content) {
+    const structure = {
+        '<h1>': /<h1>:\s*(.*?)\s*(?=<|$)/,
+        '<h2>': /<h2>:\s*(.*?)\s*(?=<|$)/g,
+        '<h3>': /<h3>:\s*(.*?)\s*(?=<|$)/,
+        '<p>': /<p>:\s*(.*?)\s*(?=<|$)/g,
+        '<a>': /<a>:\s*(.*?)\s*(?=<|$)/,
+        '<li>': /<li>:\s*(.*?)\s*(?=<|$)/g,
+    };
+
+    let parsedContent = {};
+
+    for (let tag in structure) {
+        let match = content.match(structure[tag]);
+        if (match) {
+            parsedContent[tag] = match.map(item => item.replace(structure[tag], '$1'));
+        }
+    }
+
+    return parsedContent;
+}
+
+    function updateWebpageContent(parsedContent) {
+        if (parsedContent['<h1>']) {
+            document.getElementById('preparing-for-the-day').textContent = parsedContent['<h1>'][0];
+        }
+
+        if (parsedContent['<h2>']) {
+            let h2Elements = document.querySelectorAll('.govuk-heading-m');
+            parsedContent['<h2>'].forEach((text, index) => {
+                if (h2Elements[index]) h2Elements[index].textContent = text;
+            });
+        }
+
+        if (parsedContent['<h3>']) {
+            document.querySelector('.govuk-heading-s').textContent = parsedContent['<h3>'][0];
+        }
+
+        if (parsedContent['<p>']) {
+            let pElements = document.querySelectorAll('.govuk-body p');
+            parsedContent['<p>'].forEach((text, index) => {
+                if (pElements[index]) pElements[index].textContent = text;
+            });
+        }
+
+        if (parsedContent['<a>']) {
+            let aElement = document.querySelector('.govuk-link');
+            if (aElement) aElement.textContent = parsedContent['<a>'][0];
+        }
+
+        if (parsedContent['<li>']) {
+            let ulElement = document.querySelector('.govuk-list--bullet');
+            ulElement.innerHTML = "";  // Clear the existing list
+            parsedContent['<li>'].forEach(item => {
+                let li = document.createElement('li');
+                li.textContent = item;
+                ulElement.appendChild(li);
+            });
+        }
+    }
+
 </script>
 
 
@@ -429,7 +510,7 @@ a:link, .govuk-link:link {
             </ol>
         </nav>
 <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
- <div class="govuk-grid-row">
+<div class="govuk-grid-row">
     <!-- Title Section -->
     <div class="govuk-grid-column-two-thirds">
         <h1 id="preparing-for-the-day" class="govuk-heading-l govuk-!-margin-bottom-2">Preparing for the day</h1>
@@ -487,7 +568,7 @@ a:link, .govuk-link:link {
        <div class="govuk-body">
     <div class="govuk-body">
             <p>This section provides an overview of various design and formatting elements used in content creation, such as headings, subheadings, paragraphs, links, and lists.</p>
-
+<
             <!-- Heading Section -->
             <h2 class="govuk-heading-m">Headings</h2>
             <p>Headings structure the content and guide the reader through the different sections. They are crucial for both readability and SEO.</p>
