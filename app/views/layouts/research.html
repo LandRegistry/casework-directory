@@ -49,11 +49,10 @@ HTML Setup: Multiple div elements in the HTML correspond to Trello cards. The co
 
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %} {# or extend another layout if needed #}
 {% block content %}
-<script>
+  <script>
     document.querySelector('.govuk-header__logotype-text').innerHTML = 'HMLR';
 
     document.addEventListener('DOMContentLoaded', function () {
-
 
         let navLinks = document.querySelectorAll('#app-navigation .app-navigation__link');
 
@@ -62,7 +61,6 @@ HTML Setup: Multiple div elements in the HTML correspond to Trello cards. The co
                 link.closest('.app-navigation__list-item').classList.add('app-navigation__list-item--current');
             }
         });
-
 
         let accordionToggles = document.querySelectorAll('#accordion-sections .Parent .Govlink-bold');
 
@@ -85,31 +83,50 @@ HTML Setup: Multiple div elements in the HTML correspond to Trello cards. The co
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         }
+
+        // Fetching and updating content from Trello
+        const apiKey = 'c910dd122b6d0beef6c24652650da93c';
+        const apiToken = 'ATTA3806a236f99faad65e116234aedc7e03e87552d1b42a0663aae3696ffaf8c0d62998B78C';
+        const boardId = 'VSZOgekY';
+
+        fetch(`https://api.trello.com/1/boards/${boardId}/lists?key=${apiKey}&token=${apiToken}`)
+            .then(response => response.json())
+            .then(lists => {
+                lists.forEach(list => {
+                    fetch(`https://api.trello.com/1/lists/${list.id}/cards?key=${apiKey}&token=${apiToken}`)
+                        .then(response => response.json())
+                        .then(cards => {
+                            cards.forEach(card => {
+                                const blockMatch = card.name.match(/#(block\d+)/);
+                                if (blockMatch) {
+                                    const parsedContent = parseCardContent(card.desc);
+                                    updateWebpageContent(parsedContent, blockMatch[1]);
+                                }
+                            });
+                        });
+                });
+            });
+
     });
 
-    const apiKey = 'c910dd122b6d0beef6c24652650da93c';
-    const apiToken = 'ATTA3806a236f99faad65e116234aedc7e03e87552d1b42a0663aae3696ffaf8c0d62998B78C';
-    const boardId = 'VSZOgekY';
-
-    fetch(`https://api.trello.com/1/boards/${boardId}/lists?key=${apiKey}&token=${apiToken}`)
-        .then(response => response.json())
-        .then(lists => {
-            lists.forEach(list => {
-                fetch(`https://api.trello.com/1/lists/${list.id}/cards?key=${apiKey}&token=${apiToken}`)
-                    .then(response => response.json())
-                    .then(cards => {
-                        cards.forEach(card => {
-                            const blockMatch = card.name.match(/#(block\d+)/);
-                            if (blockMatch) {
-                                const parsedContent = parseCardContent(card.desc);
-                                updateWebpageContent(parsedContent, blockMatch[1]);
-                            }
-                        });
-                    });
-            });
-        });
     function parseCardContent(content) {
+        let parsedContent = {};
 
+        const h1Matches = content.match(/<h1>:\s*([^\n]+)/g);
+        const h2Matches = content.match(/<h2>:\s*([^\n]+)/g);
+        const h3Matches = content.match(/<h3>:\s*([^\n]+)/g);
+        const pMatches = content.match(/<p>:\s*([^\n]+)/g);
+        const aMatches = content.match(/<a>:\s*([^\n]+)/g);
+        const liMatches = content.match(/<li>:\s*([^\n]+)/g);
+
+        if (h1Matches) parsedContent['<h1>'] = h1Matches.map(match => match.replace('<h1>: ', ''));
+        if (h2Matches) parsedContent['<h2>'] = h2Matches.map(match => match.replace('<h2>: ', ''));
+        if (h3Matches) parsedContent['<h3>'] = h3Matches.map(match => match.replace('<h3>: ', ''));
+        if (pMatches) parsedContent['<p>'] = pMatches.map(match => match.replace('<p>: ', ''));
+        if (aMatches) parsedContent['<a>'] = aMatches.map(match => match.replace('<a>: ', ''));
+        if (liMatches) parsedContent['<li>'] = liMatches.map(match => match.replace('<li>: ', ''));
+
+        return parsedContent;
     }
 
     function updateWebpageContent(parsedContent, block) {
@@ -130,7 +147,6 @@ HTML Setup: Multiple div elements in the HTML correspond to Trello cards. The co
         if (parsedContent['<a>']) updateElements('<a>', '.govuk-link');
         if (parsedContent['<li>']) updateElements('<li>', '.govuk-list--bullet li');
     }
-
 
 </script>
 
