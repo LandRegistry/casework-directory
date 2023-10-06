@@ -47,10 +47,59 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 .govuk-header__logotype-crown {
     display: none;
 }
-.body, h1, h2, h3, h4, h5, h6, p, a,.govuk-list, .govuk-list--bullet, li, .govuk-list--number {
+.body, h1, h2, h3, h4, h5, h6, p, a,.govuk-list, .govuk-list--bullet, li, .govuk-list--number,
+element {
+}
+.js-enabled .govuk-accordion__show-all-text, .js-enabled .govuk-accordion__section-toggle-text {
+  margin-left: 5px;
+
+  vertical-align: middle;
+
+}
+@media (min-width: 40.0625em) {
+  .js-enabled .govuk-accordion__section-toggle {
+    font-size: 19px;
+
+    font-size: 1.1875rem;
+
+    line-height: 1.3157894737;
+
+  }
+}
+.js-enabled .govuk-accordion__section-toggle {
+  font-size: 16px;
+
+  font-size: 1rem;
+
+  line-height: 1.25;
+
+  font-weight: 400;
+
+  color: #1d70b8;
+
+}
+.js-enabled .govuk-accordion__section-button {
+  color: #0b0c0c;
+
+  text-align: left;
+
+  cursor: pointer;
+
+}
+@media (min-width: 40.0625em) {
+  .govuk-accordion__section-button {
+    font-size: 24px;
+
+    font-size: 1.5rem;
+
+    line-height: 1.25;
+
+  }
+}
+.govuk-accordion__section-button {
     font-family: 'Arial', sans-serif !important;
 }
-.a, govuk-back-link  {
+a, govuk-back-link, .govuk-link  {
     font-family: 'Arial', sans-serif !important;
 }
 
