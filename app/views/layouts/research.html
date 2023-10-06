@@ -50,104 +50,102 @@ HTML Setup: Multiple div elements in the HTML correspond to Trello cards. The co
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %} {# or extend another layout if needed #}
 {% block content %}
   <script>
-    document.querySelector('.govuk-header__logotype-text').innerHTML = 'HMLR';
+document.querySelector('.govuk-header__logotype-text').innerHTML = 'HMLR';
 
-    document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
 
-        let navLinks = document.querySelectorAll('#app-navigation .app-navigation__link');
+    let navLinks = document.querySelectorAll('#app-navigation .app-navigation__link');
 
-        navLinks.forEach(link => {
-            if (window.location.href.includes(link.getAttribute('href'))) {
-                link.closest('.app-navigation__list-item').classList.add('app-navigation__list-item--current');
-            }
-        });
-
-        let accordionToggles = document.querySelectorAll('#accordion-sections .Parent .Govlink-bold');
-
-        accordionToggles.forEach(toggle => {
-            toggle.addEventListener('click', function (e) {
-                e.preventDefault();
-                let sectionId = this.getAttribute('data-toggle');
-                let content = document.getElementById(sectionId);
-                if (content) {
-                    content.classList.toggle('show');
-                }
-            });
-        });
-
-        // Back to Top
-        let backToTopLink = document.querySelector('.app-back-to-top__link');
-        if (backToTopLink) {
-            backToTopLink.addEventListener('click', function (e) {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
+    navLinks.forEach(link => {
+        if (window.location.href.includes(link.getAttribute('href'))) {
+            link.closest('.app-navigation__list-item').classList.add('app-navigation__list-item--current');
         }
-
-        // Fetching and updating content from Trello
-        const apiKey = 'c910dd122b6d0beef6c24652650da93c';
-        const apiToken = 'ATTA3806a236f99faad65e116234aedc7e03e87552d1b42a0663aae3696ffaf8c0d62998B78C';
-        const boardId = 'VSZOgekY';
-
-        fetch(`https://api.trello.com/1/boards/${boardId}/lists?key=${apiKey}&token=${apiToken}`)
-            .then(response => response.json())
-            .then(lists => {
-                lists.forEach(list => {
-                    fetch(`https://api.trello.com/1/lists/${list.id}/cards?key=${apiKey}&token=${apiToken}`)
-                        .then(response => response.json())
-                        .then(cards => {
-                            cards.forEach(card => {
-                                const blockMatch = card.name.match(/#(block\d+)/);
-                                if (blockMatch) {
-                                    const parsedContent = parseCardContent(card.desc);
-                                    updateWebpageContent(parsedContent, blockMatch[1]);
-                                }
-                            });
-                        });
-                });
-            });
-
     });
 
-    function parseCardContent(content) {
-        let parsedContent = {};
+    let accordionToggles = document.querySelectorAll('#accordion-sections .Parent .Govlink-bold');
 
-        const h1Matches = content.match(/<h1>:\s*([^\n]+)/g);
-        const h2Matches = content.match(/<h2>:\s*([^\n]+)/g);
-        const h3Matches = content.match(/<h3>:\s*([^\n]+)/g);
-        const pMatches = content.match(/<p>:\s*([^\n]+)/g);
-        const aMatches = content.match(/<a>:\s*([^\n]+)/g);
-        const liMatches = content.match(/<li>:\s*([^\n]+)/g);
+    accordionToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            let sectionId = this.getAttribute('data-toggle');
+            let content = document.getElementById(sectionId);
+            if (content) {
+                content.classList.toggle('show');
+            }
+        });
+    });
 
-        if (h1Matches) parsedContent['<h1>'] = h1Matches.map(match => match.replace('<h1>: ', ''));
-        if (h2Matches) parsedContent['<h2>'] = h2Matches.map(match => match.replace('<h2>: ', ''));
-        if (h3Matches) parsedContent['<h3>'] = h3Matches.map(match => match.replace('<h3>: ', ''));
-        if (pMatches) parsedContent['<p>'] = pMatches.map(match => match.replace('<p>: ', ''));
-        if (aMatches) parsedContent['<a>'] = aMatches.map(match => match.replace('<a>: ', ''));
-        if (liMatches) parsedContent['<li>'] = liMatches.map(match => match.replace('<li>: ', ''));
-
-        return parsedContent;
+    // Back to Top
+    let backToTopLink = document.querySelector('.app-back-to-top__link');
+    if (backToTopLink) {
+        backToTopLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     }
 
-    function updateWebpageContent(parsedContent, block) {
-        const section = document.querySelector(`[data-content-block="${block}"]`);
-        if (!section) return;
+    // Fetching and updating content from Trello
+    const apiKey = 'c910dd122b6d0beef6c24652650da93c';
+    const apiToken = 'ATTA3806a236f99faad65e116234aedc7e03e87552d1b42a0663aae3696ffaf8c0d62998B78C';
+    const boardId = 'VSZOgekY';
 
-        const updateElements = (tag, query) => {
-            const elements = section.querySelectorAll(query);
-            parsedContent[tag]?.forEach((text, index) => {
-                if (elements[index]) elements[index].textContent = text;
+    fetch(`https://api.trello.com/1/boards/${boardId}/lists?key=${apiKey}&token=${apiToken}`)
+        .then(response => response.json())
+        .then(lists => {
+            lists.forEach(list => {
+                fetch(`https://api.trello.com/1/lists/${list.id}/cards?key=${apiKey}&token=${apiToken}`)
+                    .then(response => response.json())
+                    .then(cards => {
+                        cards.forEach(card => {
+                            const blockMatch = card.name.match(/#(block\d+)/);
+                            if (blockMatch) {
+                                const parsedContent = parseCardContent(card.desc);
+                                updateWebpageContent(parsedContent, blockMatch[1]);
+                            }
+                        });
+                    });
             });
-        }
+        });
+});
 
-        if (parsedContent['<h1>']) updateElements('<h1>', 'h1');
-        if (parsedContent['<h2>']) updateElements('<h2>', '.govuk-heading-m');
-        if (parsedContent['<h3>']) updateElements('<h3>', '.govuk-heading-s');
-        if (parsedContent['<p>']) updateElements('<p>', '.govuk-body p');
-        if (parsedContent['<a>']) updateElements('<a>', '.govuk-link');
-        if (parsedContent['<li>']) updateElements('<li>', '.govuk-list--bullet li');
+function parseCardContent(content) {
+    let parsedContent = {};
+
+    const h1Matches = content.match(/<h1>:\s*([^\n]+)/g);
+    const h2Matches = content.match(/<h2>:\s*([^\n]+)/g);
+    const h3Matches = content.match(/<h3>:\s*([^\n]+)/g);
+    const pMatches = content.match(/<p>:\s*([^\n]+)/g);
+    const aMatches = content.match(/<a>:\s*([^\n]+)/g);
+    const liMatches = content.match(/<li>:\s*([^\n]+)/g);
+
+    if (h1Matches) parsedContent['<h1>'] = h1Matches.map(match => match.replace('<h1>: ', ''));
+    if (h2Matches) parsedContent['<h2>'] = h2Matches.map(match => match.replace('<h2>: ', ''));
+    if (h3Matches) parsedContent['<h3>'] = h3Matches.map(match => match.replace('<h3>: ', ''));
+    if (pMatches) parsedContent['<p>'] = pMatches.map(match => match.replace('<p>: ', ''));
+    if (aMatches) parsedContent['<a>'] = aMatches.map(match => match.replace('<a>: ', ''));
+    if (liMatches) parsedContent['<li>'] = liMatches.map(match => match.replace('<li>: ', ''));
+
+    return parsedContent;
+}
+
+function updateWebpageContent(parsedContent, block) {
+    const section = document.querySelector(`[data-content-block="${block}"]`);
+    if (!section) return;
+
+    const updateElements = (tag, query) => {
+        const elements = section.querySelectorAll(query);
+        parsedContent[tag]?.forEach((text, index) => {
+            if (elements[index]) elements[index].textContent = text;
+        });
     }
 
+    if (parsedContent['<h1>']) updateElements('<h1>', 'h1');
+    if (parsedContent['<h2>']) updateElements('<h2>', '.govuk-heading-m');
+    if (parsedContent['<h3>']) updateElements('<h3>', '.govuk-heading-s');
+    if (parsedContent['<p>']) updateElements('<p>', '.govuk-body p');
+    if (parsedContent['<a>']) updateElements('<a>', '.govuk-link');
+    if (parsedContent['<li>']) updateElements('<li>', '.govuk-list--bullet li');
+}
 </script>
 
 
@@ -679,14 +677,14 @@ a:link, .govuk-link:link {
     </div>
 <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
 
-<div id="Content-management-trello" class="govuk-grid-row" data-content-block="block5">
-     {# The `data-content-block="block5"` attribute above is crucial. It corresponds to a Trello card named `block5`. The number can be changed (e.g., `block6`, `block7`...), but ensure that the associated Trello card uses the same identifier.
+<div id="Content-management-trello" class="govuk-grid-row" data-content-block="block7">
+     {# The `data-content-block="block7"` attribute above is crucial. It corresponds to a Trello card named `block7`. The number can be changed (e.g., `block6`, `block7`...), but ensure that the associated Trello card uses the same identifier.
     The JavaScript earlier in the page detects this and populates the content, as long as the Trello markup is correct.  #}
 
     <!-- Title Section -->
     <div class="govuk-grid-column-two-thirds">
         <!-- The following h1 tag corresponds to the Trello markup <h1> and is dynamically filled. It's flexible; you can modify its content from Trello. -->
-        <h1 id="determining-daily-priorities" class="govuk-heading-l govuk-!-margin-bottom-2">Content Management using Trello</h1>
+        <h1 id="Content-management-trello" class="govuk-heading-l govuk-!-margin-bottom-2">Content Management using Trello</h1>
         <div class="govuk-body">
 
         <!-- This p tag corresponds to the Trello markup <p> and is dynamically filled. It's flexible; you can modify its content from Trello. -->
@@ -703,8 +701,8 @@ a:link, .govuk-link:link {
     </div>
 
     </div>
-    <div class="govuk-grid-column-one-third" data-content-block="block6">
-        <!-- The data-content-block="block6" attribute above is also important and corresponds to another Trello card. Update its content flexibly from Trello using the correct markup. -->
+    <div class="govuk-grid-column-one-third" data-content-block="block8">
+        <!-- The data-content-block="block8" attribute above is also important and corresponds to another Trello card. Update its content flexibly from Trello using the correct markup. -->
 
         <h4 class="tiny-link">Important Links</h4>
         <a href="https://trello.com/b/VSZOgekY/ap-research-cms" target="_blank" class="tiny-link">Trello CMS Documentation</a>
